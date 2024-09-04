@@ -94,67 +94,44 @@
     };
 
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-    // Function to render comments
-    function renderComments(comments) {
-        const commentsSection = document.getElementById('commentsSection');
-        commentsSection.innerHTML = ''; // Clear current comments
-        comments.forEach(comment => {
-            const commentDiv = document.createElement('div');
-            commentDiv.style.marginBottom = '15px';
-
-            const namePara = document.createElement('p');
-            namePara.style.fontWeight = 'bold';
-            namePara.textContent = `${comment.name} wrote:`;
-
-            const commentPara = document.createElement('p');
-            commentPara.textContent = comment.text;
-
-            commentDiv.appendChild(namePara);
-            commentDiv.appendChild(commentPara);
-
-            commentsSection.appendChild(commentDiv);
-        });
-    }
-
-    // Function to load comments
-    function loadComments() {
-        db.collection('comments').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
-            const comments = querySnapshot.docs.map(doc => doc.data());
-            renderComments(comments);
-        }).catch(error => {
-            console.error("Error loading comments: ", error);
-        });
-    }
-
-    // Submit a new comment
-    document.getElementById('commentForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        const name = document.getElementById('nameInput').value;
-        const text = document.getElementById('commentInput').value;
-
-        if (name && text) {
-            db.collection('comments').add({
-                name: name,
-                text: text,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                document.getElementById('nameInput').value = '';
-                document.getElementById('commentInput').value = '';
-                loadComments(); // Reload comments after submission
-            }).catch(error => {
-                console.error("Error adding comment: ", error);
-            });
-        } else {
-            console.log("Name and comment cannot be empty.");
-        }
+// Function to load comments
+function loadComments() {
+    db.collection('comments').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
+        const comments = querySnapshot.docs.map(doc => doc.data());
+        renderComments(comments);
+    }).catch(error => {
+        console.error("Error loading comments: ", error);
     });
+}
 
-    // Load comments when the page loads
-    loadComments();
+// Function to submit a new comment
+document.getElementById('commentForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('nameInput').value;
+    const text = document.getElementById('commentInput').value;
+
+    if (name && text) {
+        db.collection('comments').add({
+            name: name,
+            text: text,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+            document.getElementById('nameInput').value = '';
+            document.getElementById('commentInput').value = '';
+            loadComments(); // Reload comments after submission
+        }).catch(error => {
+            console.error("Error adding comment: ", error);
+        });
+    } else {
+        console.log("Name and comment cannot be empty.");
+    }
+});
+
+// Load comments when the page loads
+loadComments();
 
     </script>
 </body>
