@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billakos Model Horses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Billakos Model Horses</h1>
+    </header>
+
+    <nav>
+        <a href="file:///C:/Users/vasil/OneDrive/Υπολογιστής/Website/home.html">Home</a>
+        <a href="file:///C:/Users/vasil/OneDrive/Υπολογιστής/Website/stablestories.html">Stable Stories</a>
+        <a href="file:///C:/Users/vasil/OneDrive/Υπολογιστής/Website/shop.html">Shop</a>
+    </nav>
+
+    <section>
+        <h2>Welcome!</h2>
+        <p>Hello! My name is Billy, and I'm thrilled to announce that I'm creating my very own website dedicated to model horses! My journey began in childhood when I started playing with and collecting Schleich horses. As my love for horses grew, so did my interest in riding. One day, while browsing a local hobby store, I stumbled upon some Breyer Stablemates. I decided to buy one, not knowing if I'd like it, but the moment I unboxed my Hanoverian horse, I was blown away by the quality. It wasn't long before I went back to the store and bought the rest of the models they had.</p>
+    
+    <p>Although I first became interested in Breyers in 2020, I was discouraged because, living in Europe, I thought they were impossible to obtain. I eventually gave up on the idea of collecting them. But for Christmas 2021, I told my dad about my passion for Breyers, and he managed to find an online store where we ordered a few as my present. That marked the beginning of my collection, which has since grown to include more and more models, even some limited editions. And here I am today!</p>
+    
+<p>On this website, you'll also find my blog, which I've named Stable Stories, where I’ll share many aspects of my journey with you. There's also a shop page that I might use in the future if I ever manage to create something sellable—lol.</p>
+
+<p>I'm excited to have you join me on this journey!</p>
+<br>
+
+
+<div class="container">
+    <div class="image-box">
+        <img src="https://cdn.shopify.com/s/files/1/0015/8898/5892/files/dlxsm-product_480x480.jpg?v=1697135048" alt="Product Image">
+    </div>
+    <div class="text-box">
+        <p>This is my first year as a collector's club member!</p>
+    </div>
+</div>
+
+
+<br>
+<br>
+     <h3>Where to find me:</h3>
+     <h4 style="text-align: left;">
+    <i class="fab fa-instagram" style="font-size: 0.9em; margin-left: 5px;"></i> Instagram: @vasilis_dim0u<br>
+    <i class="fas fa-envelope" style="font-size: 0.9em; margin-left: 5px;"></i> Email: vasilis_dimou05@yahoo.gr</i> <br>
+    </i> Breyer Forums: Billy </i>
+   
+</h4>
+<br>
+<br>
+  
+  <div class="comment-container">
+ <h2>Leave a Comment:</h2>
+        <form id="commentForm">
+            <label for="nameInput">Your Name:</label><br>
+            <input type="text" id="nameInput" placeholder="Enter your name"><br><br>
+            
+            <label for="commentInput">Your Comment:</label><br>
+            <textarea id="commentInput" rows="4" cols="50" placeholder="Write your comment here..."></textarea><br><br>
+            
+            <button type="submit">Submit Comment</button>
+        </form>
+  </div>
+        
+     <div class="comments-display-container">
+        <h3>Comments:</h3>
+        <div id="commentsSection">
+            <!-- User comments will appear here -->
+        </div>
+    </div>
+
+<br>
+     <br>
+     <br>
+
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 Billakos Model Horses</p>
+    </footer>
+
+     <script>
+        // Get the form and comment section elements
+        const commentForm = document.getElementById('commentForm');
+        const nameInput = document.getElementById('nameInput');
+        const commentInput = document.getElementById('commentInput');
+        const commentsSection = document.getElementById('commentsSection');
+
+        // Listen for form submission
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get the user's name and comment
+            const userName = nameInput.value;
+            const userComment = commentInput.value;
+
+            // Create a new div to hold the comment and name
+            const commentDiv = document.createElement('div');
+            commentDiv.style.marginBottom = "15px"; // Add some spacing between comments
+
+            // Create a new paragraph element to hold the name
+            const namePara = document.createElement('p');
+            namePara.style.fontWeight = "bold"; // Make the name bold
+            namePara.textContent = userName + " wrote:";
+
+            // Create a new paragraph element to hold the comment
+            const commentPara = document.createElement('p');
+            commentPara.textContent = userComment;
+
+            // Add the name and comment to the commentDiv
+            commentDiv.appendChild(namePara);
+            commentDiv.appendChild(commentPara);
+
+            // Add the new comment to the comments section
+            commentsSection.appendChild(commentDiv);
+
+            // Clear the input fields
+            nameInput.value = '';
+            commentInput.value = '';
+        });
+    </script>
+
+</body>
+</html>
