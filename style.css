@@ -1,10 +1,9 @@
 body {
-    font-family: 'Nerko One', cursive, Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-    font-size: 16px; /* Base font size */
 }
 
 header {
@@ -27,7 +26,6 @@ nav a {
     padding: 14px 20px;
     text-decoration: none;
     text-align: center;
-    font-size: 1rem; /* Relative font size */
 }
 
 nav a:hover {
@@ -37,25 +35,8 @@ nav a:hover {
 
 section {
     padding: 20px;
-    font-family: 'Nerko One', cursive;
+  font-family: 'Nerko One', cursive;
 }
-
-/* Other CSS styles... */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .blog-container {
     max-width: 1200px;
