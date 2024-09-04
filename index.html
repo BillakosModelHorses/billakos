@@ -81,60 +81,62 @@
     </footer>
 
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
-            authDomain: "billakosmodelhorses.firebaseapp.com",
-            projectId: "billakosmodelhorses",
-            storageBucket: "billakosmodelhorses.appspot.com",
-            messagingSenderId: "988607299628",
-            appId: "1:988607299628:web:b7c2139b095a0afba8d189",
-            measurementId: "G-RWHNVMHN2P"
-        };
+        
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
+        authDomain: "billakosmodelhorses.firebaseapp.com",
+        projectId: "billakosmodelhorses",
+        storageBucket: "billakosmodelhorses.appspot.com",
+        messagingSenderId: "988607299628",
+        appId: "1:988607299628:web:b7c2139b095a0afba8d189",
+        measurementId: "G-RWHNVMHN2P"
+    };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-        // Function to render comments
-        function renderComments(comments) {
-            const commentsSection = document.getElementById('commentsSection');
-            commentsSection.innerHTML = ''; // Clear current comments
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.style.marginBottom = '15px';
+    // Function to render comments
+    function renderComments(comments) {
+        const commentsSection = document.getElementById('commentsSection');
+        commentsSection.innerHTML = ''; // Clear current comments
+        comments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.style.marginBottom = '15px';
 
-                const namePara = document.createElement('p');
-                namePara.style.fontWeight = 'bold';
-                namePara.textContent = `${comment.name} wrote:`;
+            const namePara = document.createElement('p');
+            namePara.style.fontWeight = 'bold';
+            namePara.textContent = `${comment.name} wrote:`;
 
-                const commentPara = document.createElement('p');
-                commentPara.textContent = comment.text;
+            const commentPara = document.createElement('p');
+            commentPara.textContent = comment.text;
 
-                commentDiv.appendChild(namePara);
-                commentDiv.appendChild(commentPara);
+            commentDiv.appendChild(namePara);
+            commentDiv.appendChild(commentPara);
 
-                commentsSection.appendChild(commentDiv);
-            });
-        }
+            commentsSection.appendChild(commentDiv);
+        });
+    }
 
-        // Function to load comments
-        function loadComments() {
-            db.collection('comments').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
-                const comments = querySnapshot.docs.map(doc => doc.data());
-                renderComments(comments);
-            }).catch(error => {
-                console.error("Error loading comments: ", error);
-            });
-        }
+    // Function to load comments
+    function loadComments() {
+        db.collection('comments').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
+            const comments = querySnapshot.docs.map(doc => doc.data());
+            renderComments(comments);
+        }).catch(error => {
+            console.error("Error loading comments: ", error);
+        });
+    }
 
-        // Submit a new comment
-        document.getElementById('commentForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+    // Submit a new comment
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-            const name = document.getElementById('nameInput').value;
-            const text = document.getElementById('commentInput').value;
+        const name = document.getElementById('nameInput').value;
+        const text = document.getElementById('commentInput').value;
 
+        if (name && text) {
             db.collection('comments').add({
                 name: name,
                 text: text,
@@ -146,10 +148,14 @@
             }).catch(error => {
                 console.error("Error adding comment: ", error);
             });
-        });
+        } else {
+            console.log("Name and comment cannot be empty.");
+        }
+    });
 
-        // Load comments when the page loads
-        loadComments();
+    // Load comments when the page loads
+    loadComments();
+
     </script>
 </body>
 </html>
