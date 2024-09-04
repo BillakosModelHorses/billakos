@@ -2,7 +2,8 @@
 
 
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Oswald', Arial, sans-serif;
     
     margin: 0;
     padding: 0;
@@ -15,14 +16,16 @@ header {
     color: white;
     padding: 15px 20px;
     text-align: center;
-    font-family: 'Nerko One', cursive;
+    /*font-family: 'Nerko One', cursive;*/
+    font-family: 'Oswald', Arial, sans-serif;
 }
 
 nav {
     display: flex;
     justify-content: center;
     background-color: #333;
-    font-family: 'Nerko One', cursive;
+    /*font-family: 'Nerko One', cursive;*/
+    font-family: 'Oswald', Arial, sans-serif;
 }
 
 nav a {
@@ -39,7 +42,8 @@ nav a:hover {
 
 section {
     padding: 20px;
-  font-family: 'Nerko One', cursive;
+  /*font-family: 'Nerko One', cursive;*/
+    font-family: 'Oswald', Arial, sans-serif;
 }
 
 .blog-container {
@@ -65,7 +69,8 @@ section {
 .blog-post h3 {
     font-size: 1.8em;
     margin-top: 10px;
-    font-family: 'Nerko One', cursive;
+    /*font-family: 'Nerko One', cursive;*/
+    font-family: 'Oswald', Arial, sans-serif;
 }
 
 .blog-post p {
