@@ -4,10 +4,28 @@
 body {
     /*font-family: Arial, sans-serif;*/
     font-family: 'Nerko One', cursive;
+font-size: 16px; /* Adjust as needed */
+    font-weight: 400; /* Prevent bold look */
+    letter-spacing: 0.5px; /* Add space between letters */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px; /* Font size for tablets */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px; /* Font size for smaller mobile screens */
+    }
 }
 
 header {
