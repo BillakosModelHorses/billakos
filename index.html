@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <title>Billakos Model Horses</title>
-    
     <link rel="stylesheet" href="style.css">
-    
- <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <!-- Include Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
 </head>
 <body>
     <header>
@@ -23,110 +23,133 @@
     <section>
         <h2>Welcome!</h2>
         <p>Hello! My name is Billy, and I'm thrilled to announce that I'm creating my very own website dedicated to model horses! My journey began in childhood when I started playing with and collecting Schleich horses. As my love for horses grew, so did my interest in riding. One day, while browsing a local hobby store, I stumbled upon some Breyer Stablemates. I decided to buy one, not knowing if I'd like it, but the moment I unboxed my Hanoverian horse, I was blown away by the quality. It wasn't long before I went back to the store and bought the rest of the models they had.</p>
-    
-    <p>Although I first became interested in Breyers in 2020, I was discouraged because, living in Europe, I thought they were impossible to obtain. I eventually gave up on the idea of collecting them. But for Christmas 2021, I told my dad about my passion for Breyers, and he managed to find an online store where we ordered a few as my present. That marked the beginning of my collection, which has since grown to include more and more models, even some limited editions. And here I am today!</p>
-    
-<p>On this website, you'll also find my blog, which I've named Stable Stories, where I’ll share many aspects of my journey with you. There's also a shop page that I might use in the future if I ever manage to create something sellable—lol.</p>
-
-<p>I'm excited to have you join me on this journey!</p>
-<br>
-
-
-<div class="container">
-    <div class="image-box">
-        <img src="https://cdn.shopify.com/s/files/1/0015/8898/5892/files/dlxsm-product_480x480.jpg?v=1697135048" alt="Product Image">
-    </div>
-    <div class="text-box">
-        <p>This is my first year as a collector's club member!</p>
-    </div>
-</div>
-
-
-<br>
-<br>
-     <h3>Where to find me:</h3>
-     <h4 style="text-align: left;">
-    <i class="fab fa-instagram" style="font-size: 0.9em; margin-left: 5px;"></i> Instagram: @vasilis_dim0u<br>
-    <i class="fas fa-envelope" style="font-size: 0.9em; margin-left: 5px;"></i> Email: vasilis_dimou05@yahoo.gr</i> <br>
-    </i> Breyer Forums: Billy </i>
-   
-</h4>
-<br>
-<br>
-  
-  <div class="comment-container">
- <h2>Leave a Comment:</h2>
-        <form id="commentForm">
-            <label for="nameInput">Your Name:</label><br>
-            <input type="text" id="nameInput" placeholder="Enter your name"><br><br>
-            
-            <label for="commentInput">Your Comment:</label><br>
-            <textarea id="commentInput" rows="4" cols="50" placeholder="Write your comment here..."></textarea><br><br>
-            
-            <button type="submit">Submit Comment</button>
-        </form>
-  </div>
         
-     <div class="comments-display-container">
-        <h3>Comments:</h3>
-        <div id="commentsSection">
-            <!-- User comments will appear here -->
+        <p>Although I first became interested in Breyers in 2020, I was discouraged because, living in Europe, I thought they were impossible to obtain. I eventually gave up on the idea of collecting them. But for Christmas 2021, I told my dad about my passion for Breyers, and he managed to find an online store where we ordered a few as my present. That marked the beginning of my collection, which has since grown to include more and more models, even some limited editions. And here I am today!</p>
+        
+        <p>On this website, you'll also find my blog, which I've named Stable Stories, where I’ll share many aspects of my journey with you. There's also a shop page that I might use in the future if I ever manage to create something sellable—lol.</p>
+
+        <p>I'm excited to have you join me on this journey!</p>
+        <br>
+
+        <div class="container">
+            <div class="image-box">
+                <img src="https://cdn.shopify.com/s/files/1/0015/8898/5892/files/dlxsm-product_480x480.jpg?v=1697135048" alt="Product Image">
+            </div>
+            <div class="text-box">
+                <p>This is my first year as a collector's club member!</p>
+            </div>
         </div>
-    </div>
 
-<br>
-     <br>
-     <br>
+        <br>
+        <br>
+        <h3>Where to find me:</h3>
+        <h4 style="text-align: left;">
+            <i class="fab fa-instagram" style="font-size: 0.9em; margin-left: 5px;"></i> Instagram: @vasilis_dim0u<br>
+            <i class="fas fa-envelope" style="font-size: 0.9em; margin-left: 5px;"></i> Email: vasilis_dimou05@yahoo.gr<br>
+            Breyer Forums: Billy
+        </h4>
+        <br>
+        <br>
 
+        <div class="comment-container">
+            <h2>Leave a Comment:</h2>
+            <form id="commentForm">
+                <label for="nameInput">Your Name:</label><br>
+                <input type="text" id="nameInput" placeholder="Enter your name" required><br><br>
+                
+                <label for="commentInput">Your Comment:</label><br>
+                <textarea id="commentInput" rows="4" cols="50" placeholder="Write your comment here..." required></textarea><br><br>
+                
+                <button type="submit">Submit Comment</button>
+            </form>
+        </div>
+            
+        <div class="comments-display-container">
+            <h3>Comments:</h3>
+            <div id="commentsSection">
+                <!-- User comments will appear here -->
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
     </section>
-
 
     <footer>
         <p>&copy; 2024 Billakos Model Horses</p>
     </footer>
 
-     <script>
-        // Get the form and comment section elements
-        const commentForm = document.getElementById('commentForm');
-        const nameInput = document.getElementById('nameInput');
-        const commentInput = document.getElementById('commentInput');
-        const commentsSection = document.getElementById('commentsSection');
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
+            authDomain: "billakosmodelhorses.firebaseapp.com",
+            projectId: "billakosmodelhorses",
+            storageBucket: "billakosmodelhorses.appspot.com",
+            messagingSenderId: "988607299628",
+            appId: "1:988607299628:web:b7c2139b095a0afba8d189",
+            measurementId: "G-RWHNVMHN2P"
+        };
 
-        // Listen for form submission
-        commentForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-            // Get the user's name and comment
-            const userName = nameInput.value;
-            const userComment = commentInput.value;
+        // Function to render comments
+        function renderComments(comments) {
+            const commentsSection = document.getElementById('commentsSection');
+            commentsSection.innerHTML = ''; // Clear current comments
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.style.marginBottom = '15px';
 
-            // Create a new div to hold the comment and name
-            const commentDiv = document.createElement('div');
-            commentDiv.style.marginBottom = "15px"; // Add some spacing between comments
+                const namePara = document.createElement('p');
+                namePara.style.fontWeight = 'bold';
+                namePara.textContent = `${comment.name} wrote:`;
 
-            // Create a new paragraph element to hold the name
-            const namePara = document.createElement('p');
-            namePara.style.fontWeight = "bold"; // Make the name bold
-            namePara.textContent = userName + " wrote:";
+                const commentPara = document.createElement('p');
+                commentPara.textContent = comment.text;
 
-            // Create a new paragraph element to hold the comment
-            const commentPara = document.createElement('p');
-            commentPara.textContent = userComment;
+                commentDiv.appendChild(namePara);
+                commentDiv.appendChild(commentPara);
 
-            // Add the name and comment to the commentDiv
-            commentDiv.appendChild(namePara);
-            commentDiv.appendChild(commentPara);
+                commentsSection.appendChild(commentDiv);
+            });
+        }
 
-            // Add the new comment to the comments section
-            commentsSection.appendChild(commentDiv);
+        // Function to load comments
+        function loadComments() {
+            db.collection('comments').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
+                const comments = querySnapshot.docs.map(doc => doc.data());
+                renderComments(comments);
+            }).catch(error => {
+                console.error("Error loading comments: ", error);
+            });
+        }
 
-            // Clear the input fields
-            nameInput.value = '';
-            commentInput.value = '';
+        // Submit a new comment
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('nameInput').value;
+            const text = document.getElementById('commentInput').value;
+
+            db.collection('comments').add({
+                name: name,
+                text: text,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                document.getElementById('nameInput').value = '';
+                document.getElementById('commentInput').value = '';
+                loadComments(); // Reload comments after submission
+            }).catch(error => {
+                console.error("Error adding comment: ", error);
+            });
         });
-    </script> 
 
-
-
+        // Load comments when the page loads
+        loadComments();
+    </script>
 </body>
 </html>
