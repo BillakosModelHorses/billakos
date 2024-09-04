@@ -1,3 +1,10 @@
+h1, h2, h3, h3 > a, p, li {
+    font-family: 'Nekro One', sans-serif;
+    font-weight: normal;
+    font-style: normal; 
+    text-decoration: none;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
