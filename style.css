@@ -1,4 +1,6 @@
-
+body, header, nav, section {
+    font-family: 'Nerko One', cursive, Arial, sans-serif;
+}
 
 
 body {
