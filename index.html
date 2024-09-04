@@ -82,7 +82,7 @@
         <p>&copy; 2024 Billakos Model Horses</p>
     </footer>
 
-     <!-- <script>
+     <script>
         // Get the form and comment section elements
         const commentForm = document.getElementById('commentForm');
         const nameInput = document.getElementById('nameInput');
@@ -121,61 +121,8 @@
             nameInput.value = '';
             commentInput.value = '';
         });
-    </script> -->
+    </script> 
 
-<script>
-    // Function to render comments from localStorage
-    function renderComments() {
-        const storedComments = JSON.parse(localStorage.getItem('comments')) || [];
-        commentsSection.innerHTML = ''; // Clear the current comments
-        storedComments.forEach(comment => {
-            const commentDiv = document.createElement('div');
-            commentDiv.style.marginBottom = "15px";
-
-            const namePara = document.createElement('p');
-            namePara.style.fontWeight = "bold";
-            namePara.textContent = comment.name + " wrote:";
-
-            const commentPara = document.createElement('p');
-            commentPara.textContent = comment.text;
-
-            commentDiv.appendChild(namePara);
-            commentDiv.appendChild(commentPara);
-
-            commentsSection.appendChild(commentDiv);
-        });
-    }
-
-    // Get the form and comment section elements
-    const commentForm = document.getElementById('commentForm');
-    const nameInput = document.getElementById('nameInput');
-    const commentInput = document.getElementById('commentInput');
-    const commentsSection = document.getElementById('commentsSection');
-
-    // Render comments on page load
-    renderComments();
-
-    // Listen for form submission
-    commentForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
-
-        // Get the user's name and comment
-        const userName = nameInput.value;
-        const userComment = commentInput.value;
-
-        // Save the comment to localStorage
-        const storedComments = JSON.parse(localStorage.getItem('comments')) || [];
-        storedComments.push({ name: userName, text: userComment });
-        localStorage.setItem('comments', JSON.stringify(storedComments));
-
-        // Re-render the comments
-        renderComments();
-
-        // Clear the input fields
-        nameInput.value = '';
-        commentInput.value = '';
-    });
-</script>
 
 
 </body>
