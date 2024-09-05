@@ -108,26 +108,27 @@
 
         // Function to render comments
         function renderComments(comments) {
-            const commentsSection = document.getElementById('commentsSection');
-            commentsSection.innerHTML = ''; // Clear current comments
+    const commentsSection = document.getElementById('commentsSection');
+    commentsSection.innerHTML = ''; // Clear current comments
 
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.style.marginBottom = '15px';
+    comments.forEach(comment => {
+        const commentDiv = document.createElement('div');
+        commentDiv.style.marginBottom = '15px';
 
-                const namePara = document.createElement('p');
-                namePara.style.fontWeight = 'bold';
-                namePara.textContent = `${comment.name} wrote:`;
+        const namePara = document.createElement('p');
+        namePara.style.fontWeight = 'bold';
+        namePara.textContent = `${comment.name} wrote:`;
 
-                const commentPara = document.createElement('p');
-                commentPara.textContent = comment.text;
+        const commentPara = document.createElement('p');
+        commentPara.textContent = comment.text;
 
-                commentDiv.appendChild(namePara);
-                commentDiv.appendChild(commentPara);
+        commentDiv.appendChild(namePara);
+        commentDiv.appendChild(commentPara);
 
-                commentsSection.appendChild(commentDiv);
-            });
-        }
+        commentsSection.appendChild(commentDiv);
+    });
+}
+
 
         // Function to submit a new comment
         document.getElementById('commentForm').addEventListener('submit', function(event) {
@@ -155,6 +156,7 @@
         // Load comments when the page loads
         loadComments();
     </script>
+    
 </body>
 </html>
 
