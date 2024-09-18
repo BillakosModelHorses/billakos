@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Stable Stories Archive</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <header>
+        <h1>Stable Stories Archive</h1>
+    </header>
+
+    <nav>
+        <a href="https://billakosmodelhorses.github.io/billakos/">Home</a>
+        <a href="https://billakosmodelhorses.github.io/billakos/stablestories.html">Stable Stories</a>
+        <a href="https://billakosmodelhorses.github.io/billakos/shop.html">Shop</a>
+        <a href="archive.html">Archive</a> <!-- New archive link -->
+    </nav>
+
+
+<div class="blog-container">
+
+<div class="blog-post">
+            <h3><center>Posts by Month</h3>
+            
+<h4><center><a href="link september">September 2024</a></h4>
+
+        </div>
+
+<div class="blog-post">
+       
+<h4><center><a href="link september">Collection Showcase Archive</a></h4>
+
+        </div>
+
+</div>
+        
+
+    <footer>
+        <p>&copy; 2024 Billakos Model Horses</p>
+    </footer>
+
+
+</body>
+</html>
