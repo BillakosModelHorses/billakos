@@ -1,5 +1,12 @@
 
+.custom-link {
+    color: #FFFFFF; /* Hex code for a shade of blue */
+    text-decoration: none;
+  }
 
+  .custom-link:hover {
+    color: #FFFFFF; /* Hex code for a shade of green */
+  }
 
 body {
     /*font-family: Arial, sans-serif;*/
