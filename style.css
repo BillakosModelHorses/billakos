@@ -190,12 +190,13 @@ footer {
     flex-direction: row-reverse; /* Puts the image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
     padding: 10px;
-    width: fit-content; /* Adjusts width to fit content */
+    max-width: 100%; /* Makes sure it does not exceed the screen width */
     margin: 20px auto;
+    box-sizing: border-box; /* Includes padding and border in the width calculation */
 }
 
 .image-box img {
-    max-width: 350px; /* Makes the image smaller */
+    max-width: 350px; /* Maximum size for larger screens */
     height: auto; /* Maintains the aspect ratio */
     margin-left: 20px; /* Space between the text and the image */
 }
@@ -211,6 +212,7 @@ footer {
         flex-direction: column; /* Stack items vertically */
         align-items: center; /* Center-align items */
         width: 100%; /* Full width to fit the screen */
+        padding: 10px; /* Adjust padding to avoid overflow */
     }
 
     .image-box img {
@@ -225,5 +227,6 @@ footer {
         padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
+
 
 
