@@ -184,6 +184,7 @@ footer {
     margin-bottom: 10px;
 }
 
+
 .container {
     display: flex;
     flex-direction: row-reverse; /* Puts the image on the right */
@@ -204,4 +205,27 @@ footer {
     align-items: center; /* Centers the text vertically */
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stacks elements vertically */
+        align-items: center; /* Center align content for better appearance */
+        width: 90%; /* Makes the container responsive on smaller screens */
+    }
+
+    .image-box {
+        margin: 10px 0; /* Adds spacing around the image */
+    }
+
+    .image-box img {
+        max-width: 100%; /* Make the image responsive */
+        height: auto; /* Maintain image aspect ratio */
+        margin-left: 0; /* Reset margin to avoid unnecessary spacing */
+    }
+
+    .text-box {
+        justify-content: center; /* Center the text box content */
+        text-align: center; /* Align text to center for better mobile display */
+    }
+}
 
