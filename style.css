@@ -199,7 +199,7 @@ footer {
 
 .image-box img {
     width: 100%; /* Make the image responsive */
-    max-width: 350px; /* Restrict maximum size */
+    max-width: 250px; /* Restrict maximum size for better fit on all screens */
     height: auto; /* Maintains the aspect ratio */
     margin-left: 20px; /* Space between the text and the image */
 }
@@ -219,7 +219,7 @@ footer {
     }
 
     .image-box img {
-        max-width: 90%; /* Limit image width to 90% of the container */
+        max-width: 80%; /* Limit image width to 80% of the container */
         margin-left: 0; /* Remove left margin to center the image */
         margin-bottom: 15px; /* Add space below the image */
     }
@@ -230,6 +230,7 @@ footer {
         padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
+
 
 
 
