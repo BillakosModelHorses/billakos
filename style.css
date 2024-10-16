@@ -237,6 +237,7 @@ footer {
 
 
 
+
 .container {
     display: flex;
     flex-direction: row-reverse; /* Puts the image on the right for larger screens */
@@ -281,7 +282,7 @@ footer {
         padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
-}
+
 
 
 
