@@ -187,7 +187,7 @@ footer {
 
 .container {
     display: flex;
-    flex-direction: row-reverse; /* Puts the image on the right */
+    flex-direction: row-reverse; /* Puts the image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
     padding: 10px;
     width: fit-content; /* Adjusts width to fit content */
@@ -206,26 +206,24 @@ footer {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 600px) { /* Changed the breakpoint for more precise control */
     .container {
-        flex-direction: column; /* Stacks elements vertically */
-        align-items: center; /* Center align content for better appearance */
-        width: 90%; /* Makes the container responsive on smaller screens */
-    }
-
-    .image-box {
-        margin: 10px 0; /* Adds spacing around the image */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center-align items */
+        width: 100%; /* Full width to fit the screen */
     }
 
     .image-box img {
-        max-width: 100%; /* Make the image responsive */
-        height: auto; /* Maintain image aspect ratio */
-        margin-left: 0; /* Reset margin to avoid unnecessary spacing */
+        max-width: 90%; /* Limit image width to 90% of the container */
+        margin-left: 0; /* Remove left margin to center the image */
+        margin-bottom: 15px; /* Add space below the image */
     }
 
     .text-box {
-        justify-content: center; /* Center the text box content */
-        text-align: center; /* Align text to center for better mobile display */
+        justify-content: center; /* Center the text */
+        text-align: center; /* Center-align text for mobile display */
+        padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
+
 
