@@ -158,6 +158,7 @@ footer {
     bottom: 0;
 }
 
+
 .comment-container {
     border: 3px solid #3498db; /* Blue border */
     background-color: #f0f8ff; /* Light blue background */
@@ -166,6 +167,7 @@ footer {
     max-width: 600px; /* Maximum width of the box */
     margin: 20px auto; /* Center the box with automatic margins */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+    box-sizing: border-box; /* Includes padding and border in width calculation */
 }
 
 .comments-display-container {
@@ -178,10 +180,59 @@ footer {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
 }
 
+#commentForm {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+}
+
+#nameInput, 
+#commentInput {
+    width: 100%; /* Full width of the container */
+    max-width: 100%; /* Ensure it does not exceed the container's width */
+    padding: 10px; /* Add some padding inside the input fields */
+    margin-bottom: 15px; /* Space between fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    background-color: #fff; /* White background for the inputs */
+}
+
+#commentForm button {
+    width: 100%; /* Full width button */
+    max-width: 100%; /* Ensure the button fits the container */
+    padding: 10px; /* Space inside the button */
+    background-color: #3498db; /* Blue button background */
+    color: white; /* White text on the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+#commentForm button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
 #commentsSection div {
     border-bottom: 1px solid #ccc; /* Add a line between comments */
     padding-bottom: 10px;
     margin-bottom: 10px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .comment-container,
+    .comments-display-container {
+        width: 90%; /* Reduce width for smaller screens */
+        padding: 15px; /* Adjust padding for better fit */
+    }
+
+    #nameInput, 
+    #commentInput, 
+    #commentForm button {
+        width: 100%; /* Ensure form elements are responsive */
+        max-width: 100%; /* Make sure they fit the container */
+    }
 }
 
 
