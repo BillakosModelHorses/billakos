@@ -160,15 +160,6 @@ footer {
 
 
 
-.comment-container,
-.comments-display-container {
-    width: 100%; /* Full width of the container's parent */
-    max-width: 600px; /* Maximum width of the box */
-    margin: 20px auto; /* Center the box with automatic margins */
-}
-
-
-
 
 .comment-container {
     border: 3px solid #3498db; /* Blue border */
@@ -252,11 +243,11 @@ footer {
 
 .container {
     display: flex;
-    flex-direction: row-reverse; /* Puts the image on the right for larger screens */
+    flex-direction: row-reverse; /* Image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
-    padding: 10px;
-    max-width: 700px; /* Slightly larger maximum width for larger screens */
-    width: 85%; /* Adjust width to ensure better responsiveness */
+    padding: 15px; /* Increased padding for a bit more breathing room */
+    max-width: 800px; /* Increased maximum width for larger screens */
+    width: 90%; /* Slightly wider for medium-sized screens */
     margin: 20px auto; /* Center the container */
     box-sizing: border-box; /* Includes padding and border in the width calculation */
     overflow: hidden; /* Prevents overflow issues */
@@ -265,10 +256,10 @@ footer {
 /* Image styling */
 .image-box img {
     width: 100%; /* Make the image responsive */
-    max-width: 320px; /* Restrict maximum size */
+    max-width: 300px; /* Restrict maximum size of the image */
     height: auto; /* Maintains the aspect ratio */
     margin-left: 20px; /* Space between the text and the image */
-    margin-right: 30px; /* Added space to the right of the image */
+    margin-right: 40px; /* Increased space to the right of the image */
 }
 
 /* Text styling */
@@ -280,8 +271,8 @@ footer {
 /* Media query for slightly smaller screens */
 @media (max-width: 1000px) {
     .container {
-        max-width: 90%; /* Expand the container width slightly for medium-sized screens */
-        padding: 10px; /* Keep padding to ensure readability */
+        max-width: 95%; /* Expand the container width slightly for medium-sized screens */
+        padding: 15px; /* Maintain padding for readability */
     }
 }
 
@@ -307,6 +298,7 @@ footer {
         padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
+
 
 
 
