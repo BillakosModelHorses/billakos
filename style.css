@@ -243,8 +243,8 @@ footer {
     flex-direction: row-reverse; /* Puts the image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
     padding: 10px;
-    max-width: 600px; /* Further limit the maximum width for larger screens */
-    width: 80%; /* Make sure it still adapts on medium-sized screens */
+    max-width: 700px; /* Slightly larger maximum width for larger screens */
+    width: 85%; /* Adjust width to ensure better responsiveness */
     margin: 20px auto; /* Center the container */
     box-sizing: border-box; /* Includes padding and border in the width calculation */
     overflow: hidden; /* Prevents overflow issues */
@@ -253,9 +253,10 @@ footer {
 /* Image styling */
 .image-box img {
     width: 100%; /* Make the image responsive */
-    max-width: 300px; /* Restrict maximum size */
+    max-width: 320px; /* Restrict maximum size */
     height: auto; /* Maintains the aspect ratio */
     margin-left: 20px; /* Space between the text and the image */
+    margin-right: 30px; /* Added space to the right of the image */
 }
 
 /* Text styling */
@@ -284,6 +285,7 @@ footer {
     .image-box img {
         max-width: 90%; /* Limit image width to 90% of the container */
         margin-left: 0; /* Remove left margin to center the image */
+        margin-right: 0; /* Remove right margin for mobile */
         margin-bottom: 15px; /* Add space below the image */
     }
 
@@ -293,6 +295,7 @@ footer {
         padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
+
 
 
 
