@@ -159,6 +159,17 @@ footer {
 }
 
 
+
+.comment-container,
+.comments-display-container {
+    width: 100%; /* Full width of the container's parent */
+    max-width: 600px; /* Maximum width of the box */
+    margin: 20px auto; /* Center the box with automatic margins */
+}
+
+
+
+
 .comment-container {
     border: 3px solid #3498db; /* Blue border */
     background-color: #f0f8ff; /* Light blue background */
