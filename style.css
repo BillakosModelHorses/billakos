@@ -243,7 +243,7 @@ footer {
     flex-direction: row-reverse; /* Puts the image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
     padding: 10px;
-    max-width: 500px; /* Limit the maximum width of the container for larger screens */
+    max-width: 300px; /* Limit the maximum width of the container for larger screens */
     width: 90%; /* Make sure it still shrinks on medium screens */
     margin: 20px auto; /* Center the container */
     box-sizing: border-box; /* Includes padding and border in the width calculation */
