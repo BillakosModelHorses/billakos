@@ -243,8 +243,8 @@ footer {
     flex-direction: row-reverse; /* Puts the image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
     padding: 10px;
-    max-width: 300px; /* Limit the maximum width of the container for larger screens */
-    width: 90%; /* Make sure it still shrinks on medium screens */
+    max-width: 600px; /* Further limit the maximum width for larger screens */
+    width: 80%; /* Make sure it still adapts on medium-sized screens */
     margin: 20px auto; /* Center the container */
     box-sizing: border-box; /* Includes padding and border in the width calculation */
     overflow: hidden; /* Prevents overflow issues */
@@ -253,7 +253,7 @@ footer {
 /* Image styling */
 .image-box img {
     width: 100%; /* Make the image responsive */
-    max-width: 350px; /* Restrict maximum size */
+    max-width: 300px; /* Restrict maximum size */
     height: auto; /* Maintains the aspect ratio */
     margin-left: 20px; /* Space between the text and the image */
 }
@@ -265,15 +265,15 @@ footer {
 }
 
 /* Media query for slightly smaller screens */
-@media (max-width: 500px) {
+@media (max-width: 1000px) {
     .container {
-        max-width: 90%; /* Reduce the max width slightly for medium-sized screens */
+        max-width: 90%; /* Expand the container width slightly for medium-sized screens */
         padding: 10px; /* Keep padding to ensure readability */
     }
 }
 
 /* Media query for smaller screens */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .container {
         flex-direction: column; /* Stack items vertically */
         align-items: center; /* Center-align items */
