@@ -243,12 +243,14 @@ footer {
     flex-direction: row-reverse; /* Puts the image on the right for larger screens */
     border: 2px solid #000; /* Border around the box */
     padding: 10px;
-    max-width: 100%; /* Ensures the container does not exceed the viewport width */
-    margin: 20px auto;
+    max-width: 800px; /* Limit the maximum width of the container for larger screens */
+    width: 90%; /* Make sure it still shrinks on medium screens */
+    margin: 20px auto; /* Center the container */
     box-sizing: border-box; /* Includes padding and border in the width calculation */
     overflow: hidden; /* Prevents overflow issues */
 }
 
+/* Image styling */
 .image-box img {
     width: 100%; /* Make the image responsive */
     max-width: 350px; /* Restrict maximum size */
@@ -256,9 +258,18 @@ footer {
     margin-left: 20px; /* Space between the text and the image */
 }
 
+/* Text styling */
 .text-box {
     display: flex;
     align-items: center; /* Centers the text vertically */
+}
+
+/* Media query for slightly smaller screens */
+@media (max-width: 1000px) {
+    .container {
+        max-width: 90%; /* Reduce the max width slightly for medium-sized screens */
+        padding: 10px; /* Keep padding to ensure readability */
+    }
 }
 
 /* Media query for smaller screens */
@@ -282,6 +293,7 @@ footer {
         padding: 0 10px; /* Add padding to the text for better readability */
     }
 }
+
 
 
 
