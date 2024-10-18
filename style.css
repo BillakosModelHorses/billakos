@@ -159,26 +159,25 @@ footer {
 }
 
 
-.comment-container,
-.comments-display-container {
-    border: 3px solid; /* Border property will be specified individually */
+.comment-container {
+    border: 3px solid #3498db; /* Blue border */
+    background-color: #f0f8ff; /* Light blue background */
     border-radius: 10px; /* Rounded corners */
     padding: 20px; /* Space inside the container */
-    width: 100%; /* Full width of the container's parent */
     max-width: 600px; /* Maximum width of the box */
     margin: 20px auto; /* Center the box with automatic margins */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
     box-sizing: border-box; /* Includes padding and border in width calculation */
 }
 
-.comment-container {
-    border-color: #3498db; /* Blue border */
-    background-color: #f0f8ff; /* Light blue background */
-}
-
 .comments-display-container {
-    border-color: #2ecc71; /* Green border */
+    border: 3px solid #2ecc71; /* Green border */
     background-color: #eafaf1; /* Light green background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Space inside the container */
+    max-width: 600px; /* Maximum width of the box */
+    margin: 20px auto; /* Center the box with automatic margins */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
 }
 
 #commentForm {
