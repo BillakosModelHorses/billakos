@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin-Billakos Model Horses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://i.postimg.cc/nLyg39tP/6205B9F2-AE7D-4105-AE47-78BF6B5B531A.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        #content {
+            display: none;
+        }
+        body { font-family: 'Oswald', sans-serif; margin: 20px; }
+        textarea, .output { width: 100%; margin-top: 10px; }
+        .output { white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; }
+    </style>
+
+    <script>
+        function checkPassword() {
+            const password = prompt("Please enter the password:");
+            const correctPassword = "billakos123";
+
+            if (password === correctPassword) {
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Incorrect password! Redirecting to home page.");
+                window.location.href = "https://billakosmodelhorses.github.io/billakos/";
+            }
+        }
+
+
+
+
+
+
+
+
+        function generateHTML() {
+            const title = document.getElementById('blogTitle').value;
+            const date = document.getElementById('blogDate').value;
+            const content = document.getElementById('blogContent').value;
+
+            const readableDate = new Date(date).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' });
+
+            let html = `<div class="blog-post">\n`;
+            html += `    <h3>${title}</h3>\n`;
+            html += `    <p class="date">Published on ${readableDate}</p>\n`;
+
+            const lines = content.split('\n');
+            lines.forEach(line => {
+                line = line.trim();
+
+                if (line.startsWith("(c)")) {
+                    // Remove the "(c)" part and get the actual text after it
+                    const coloredText = line.replace("(c)", "").trim();
+                    html += `<center><p><span style="color: #2c789c;">${coloredText}</span></p></center>\n`;
+                } else if (line === "__") {
+                    html += `    <p><center>__  _______________  __</center></p>\n`;
+                } else if (line.startsWith("(center)")) {
+                    const centeredText = line.replace("(center)", "").trim();
+                    html += `    <center><p>${centeredText}</p></center>\n`;
+                } else if (line.startsWith("(2)")) {
+                    // Handling multiple images in a single row
+                    const images = line.replace("(2)", "").trim().split(' ');
+                    html += `<center>\n`;
+                    images.forEach(img => {
+                        html += `<img src="${img}" width="300" height="400">\n`;
+                    });
+                    html += `</center>\n`;
+                } else if (line.startsWith("http")) {
+                    html += `    <center><img src="${line}" width="400" height="400"></center>\n`;
+                } else if (line) {
+                    html += `    <p>${line}</p>\n`;
+                }
+            });
+
+            html += `</div>`;
+            document.getElementById('output').innerText = html;
+        }
+    </script>
+</head>
+<body onload="checkPassword()">
+
+<div id="content">
+    <header>
+        <h1>Admin Page</h1>
+    </header>
+
+    <nav>
+        <a href="https://billakosmodelhorses.github.io/billakos/" class="custom-link">Home</a>
+        <a href="https://billakosmodelhorses.github.io/billakos/stablestories.html" class="custom-link">Stable Stories</a>
+        <a href="https://billakosmodelhorses.github.io/billakos/iso.html" class="custom-link">ISO</a>
+        <a href="https://billakosmodelhorses.github.io/billakos/archive.html" class="custom-link">Archive</a> 
+    </nav>
+
+    <section class="blog-container">
+ 
+        <h2>Blog Post HTML Generator</h2>
+
+<div class="blog-post">
+<center><p>(c)Text ->colored text in blue color in center</p>
+<p>(img) ->Add link space and link for more than 1 image</p>
+<p>__ (2 down -) ->adds __ _________ __</p>
+<p>(center) -> centered text</p></center>
+</div>
+
+        <label for="blogTitle">Title:</label>
+        <input type="text" id="blogTitle" placeholder="Enter post title" style="width: 100%;">
+        
+        <label for="blogDate">Date:</label>
+        <input type="date" id="blogDate" style="width: 100%;">
+        
+        <label for="blogContent">Blog Content:</label>
+        <textarea id="blogContent" rows="10" placeholder="Paste your blog content here..."></textarea>
+        
+        <button onclick="generateHTML()">Generate HTML</button>
+
+        <h3>Generated HTML:</h3>
+        <div class="output" id="output"></div>
+
+    </section>
+</div>
+
+</body>
+</html>
