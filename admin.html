@@ -9,8 +9,16 @@
     
     <style>
         #content {
-            display: none;
-        }
+    display: block; /* Change to block or flex to make it visible */
+    position: fixed; /* Ensures it takes up the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    z-index: 999; /* Brings it to the front, if needed */
+    background-color: #fff; /* Optional: set a background color */
+}
+
         body { font-family: 'Oswald', sans-serif; margin: 20px; }
         textarea, .output { width: 100%; margin-top: 10px; }
         .output { white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; }
