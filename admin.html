@@ -56,7 +56,7 @@
                 } else if (line.startsWith("(center)")) {
                     const centeredText = line.replace("(center)", "").trim();
                     html += `    <center><p>${centeredText}</p></center>\n`;
-                } else if (line.startsWith("(2)")) {
+                } else if (line.startsWith("(img)")) {
                     // Handling multiple images in a single row
                     const images = line.replace("(img)", "").trim().split(' ');
                     html += `<center>\n`;
