@@ -58,10 +58,10 @@
                     html += `    <center><p>${centeredText}</p></center>\n`;
                 } else if (line.startsWith("(2)")) {
                     // Handling multiple images in a single row
-                    const images = line.replace("(2)", "").trim().split(' ');
+                    const images = line.replace("(img)", "").trim().split(' ');
                     html += `<center>\n`;
                     images.forEach(img => {
-                        html += `<img src="${img}" width="300" height="400">\n`;
+                        html += `<img src="${img}" width="400" height="400">\n`;
                     });
                     html += `</center>\n`;
                 } else if (line.startsWith("http")) {
