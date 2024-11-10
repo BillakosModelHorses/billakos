@@ -67,9 +67,14 @@
                     html += `</center>\n`;
                 } else if (line.startsWith("http")) {
                     html += `    <center><img src="${line}" width="400" height="400"></center>\n`;
-                } else if (line) {
-                    html += `    <p>${line}</p>\n`;
-                }
+                //} else if (line) {
+                    //html += `    <p>${line}</p>\n`;
+                } else if (line === "") {
+    // Add a blank line if the line is empty
+    html += `    <p>&nbsp;</p>\n`;
+} else if (line) {
+    html += `    <p>${line}</p>\n`;
+}
             });
 
             html += `</div>`;
