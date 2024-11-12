@@ -67,6 +67,14 @@
                     html += `</center>\n`;
                 } else if (line.startsWith("http")) {
                     html += `    <center><img src="${line}" width="400" height="400"></center>\n`;
+                } else if (line.startsWith("(b)")) {
+    // Insert a list when line starts with "(b)" and allows dynamic list items
+    const listItems = line.replace("(b)", "").trim().split('-').map(item => item.trim());
+    html += `<ul>\n`;
+    listItems.forEach(item => {
+        html += `    <li>${item}</li>\n`;
+    });
+    html += `</ul>\n`;
                 } else if (line) {
                     html += `    <p>${line}</p>\n`;
                 }
@@ -100,6 +108,7 @@
 <p>(img) ->Add link space and link for more than 1 image</p>
 <p>__ (2 down -) ->adds __ _________ __</p>
 <p>(center) -> centered text</p></center>
+    <p>(b) -> Bullet list. Write (b)text-text-text...</p>
 </div>
 
         <label for="blogTitle">Title:</label>
