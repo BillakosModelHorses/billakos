@@ -130,6 +130,64 @@
         <textarea rows="10" cols="20" placeholder="Start typing..."></textarea>
 
     </section>
+
+
+
+
+
+
+<center><button onclick="copyCode()">Copy Month Archive code</button></center>
+
+<!-- Script to Copy Text -->
+<script>
+function copyCode() {
+    // Define the code you want to copy as a string
+    const code = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billakos Model Horses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://i.postimg.cc/nLyg39tP/6205B9F2-AE7D-4105-AE47-78BF6B5B531A.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>MONTH 2024</h1>
+    </header>
+    <nav>
+        <a href="https://billakosmodelhorses.github.io/billakos/archive.html">Back to Archive Page</a> 
+    </nav>
+    <div class="blog-container">
+        <div class="blog-post">
+            <h3><center>Posts will go up after the month ends!</center></h3>
+        </div>
+    </div>
+    <br><br><br>
+    <footer>
+        <p>Thank you for reading :)</p>
+    </footer>
+</body>
+</html>`;
+
+    // Create a temporary text area to hold the code
+    const tempTextArea = document.createElement("textarea");
+    tempTextArea.value = code;
+    document.body.appendChild(tempTextArea);
+
+    // Select and copy the text
+    tempTextArea.select();
+    tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+
+    // Remove the temporary text area
+    document.body.removeChild(tempTextArea);
+
+    // Optionally, notify the user
+    alert("HTML code copied to clipboard!");
+}
+</script>
+
 </div>
    
 
