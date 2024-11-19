@@ -24,7 +24,7 @@
       margin: 0 auto;
       /*background-color: #add8e6;  Light blue sky */
       border: 2px solid #000;
-max-width: 90%;  /* Ensure it never goes beyond the screen width */
+ max-width: 90%;  /* Ensure it never goes beyond the screen width */
   max-height: 90%; /* Ensure it never goes beyond the screen height */
     }
 
@@ -55,14 +55,20 @@ max-width: 90%;  /* Ensure it never goes beyond the screen width */
 
 <br><br>
 <button id="startButton">Start Game</button>
-  <canvas id="gameCanvas" width="500" height="600" style="display: none;"></canvas>
-  <script src="script.js"></script>
+  <div id="gameModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <canvas id="gameCanvas" width="500" height="600"></canvas>
+<script src="script.js"></script>
+    </div>
+</div>
+  
 
-
+<center><p>If you are on a computer use the left and right arrows to move the bags. If you are on mobile simply scroll the bags with your finger! The goal is to collect as many model horses as you can. If you miss 5 the game will stop. Have fun collecting!</center>
     <br><br>
     <br><br><br>
     <footer>
-        <p>Thank you for reading :)</p>
+        <p>How many horses can you catch?</p>
     </footer>
 </body>
 </html>
