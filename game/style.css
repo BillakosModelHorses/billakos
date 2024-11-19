@@ -14,7 +14,7 @@
 
 /* Modal content */
 .modal-content {
-    position: relative;
+    position: left;
     margin: auto;
     padding: 0;
     top: 50%;
