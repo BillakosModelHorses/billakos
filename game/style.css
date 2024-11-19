@@ -1,6 +1,5 @@
 
 
-/* Modal container */
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
@@ -15,9 +14,9 @@
 
 /* Modal content */
 .modal-content {
-    position: absolute;
+    position: relative;
     margin: auto;
-    padding: 20px; /* Add padding for spacing */
+    padding: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 90%;
@@ -26,7 +25,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    text-align: left; /* Align text to the left */
+    text-align: center;
     color: white;
 }
 
