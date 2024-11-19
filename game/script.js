@@ -184,26 +184,9 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-// Lock the screen orientation
-function lockOrientation() {
-  if (screen.orientation && screen.orientation.lock) {
-    screen.orientation.lock("landscape").catch((err) => console.log("Orientation lock failed: ", err));
-  }
-}
-
-// Unlock the screen orientation
-function unlockOrientation() {
-  if (screen.orientation && screen.orientation.unlock) {
-    screen.orientation.unlock().catch((err) => console.log("Orientation unlock failed: ", err));
-  }
-}
-
 // Start game
 function startGame() {
   isGameRunning = true;
-
-  // Lock the screen orientation to landscape when the game starts
-  lockOrientation();
 
   // Clear any existing intervals
   clearInterval(itemCreationInterval);
@@ -234,9 +217,6 @@ function openGameModal() {
 function closeGameModal() {
   gameModal.style.display = "none"; // Hide modal
   resetGame(); // Reset the game variables and clear intervals
-
-  // Unlock the screen orientation when the game ends
-  unlockOrientation();
 }
 
 // Event listeners for modal open and close
@@ -249,5 +229,3 @@ window.addEventListener("click", (e) => {
     closeGameModal();
   }
 });
-
-
