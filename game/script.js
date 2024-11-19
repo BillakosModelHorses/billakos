@@ -3,6 +3,10 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const startButton = document.getElementById("startButton");
 
+// Modal elements
+const gameModal = document.getElementById("gameModal");
+const closeButton = document.querySelector(".close");
+
 // Game variables
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
@@ -27,8 +31,6 @@ let isGameRunning = false;
 const itemImages = [
   "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/1847G_Marc_of_Charm_R_1024x1024.png?v=1731691552?text=A",
   "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-EV-10427_Tight_Lines_in_blanket_Rev_1024x1024.png?v=1730294222?text=B",
-  //"https://via.placeholder.com/30?text=C",
-  //"https://via.placeholder.com/30?text=D"
 ];
 
 // Controls
@@ -130,7 +132,7 @@ function checkGameOver() {
   if (missedItems >= maxMisses) {
     isGameRunning = false;
     alert(`Game Over! Your final score is ${score}`);
-    resetGame();
+    closeGameModal();
   }
 }
 
@@ -141,14 +143,11 @@ function resetGame() {
   items.length = 0; // Clear all items
   itemSpeed = 3;
   bagX = (canvasWidth - bagWidth) / 2;
-  startButton.style.display = "block";
-  canvas.style.display = "none";
 }
 
 // Load background image
 const backgroundImage = new Image();
 backgroundImage.src = "https://www.horseillustrated.com/wp-content/uploads/BreyerFest-002.jpg"; // Replace with the actual path to your background image
-
 
 function drawBackground() {
   ctx.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight); // Match canvas size
@@ -156,9 +155,6 @@ function drawBackground() {
 
 let itemCreationInterval; // To track item creation interval
 let speedIncreaseInterval; // To track speed increase interval
-
-
-
 
 // Main game loop
 function gameLoop() {
@@ -181,15 +177,9 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-
-
-
-
 // Start game
 function startGame() {
   isGameRunning = true;
-  startButton.style.display = "none";
-  canvas.style.display = "block";
 
   // Clear any existing intervals
   clearInterval(itemCreationInterval);
@@ -198,7 +188,7 @@ function startGame() {
   // Start new intervals
   itemCreationInterval = setInterval(createItem, 1000); // Create new item every second
   speedIncreaseInterval = setInterval(() => {
-    itemSpeed += 0.2; // Gradually increase speed
+    itemSpeed += 0.4; // Gradually increase speed
   }, 5000);
 
   // Reset speed
@@ -208,25 +198,25 @@ function startGame() {
   gameLoop();
 }
 
-function resetGame() {
-  // Reset game variables
-  score = 0;
-  missedItems = 0;
-  items.length = 0; // Clear all items
-  itemSpeed = 3;
-  bagX = (canvasWidth - bagWidth) / 2;
-
-  // Clear intervals
-  clearInterval(itemCreationInterval);
-  clearInterval(speedIncreaseInterval);
-
-  // Display the start button
-  startButton.style.display = "block";
-  canvas.style.display = "none";
+// Modal handling
+function openGameModal() {
+  gameModal.style.display = "block"; // Show modal
+  startGame(); // Start the game
 }
 
+function closeGameModal() {
+  gameModal.style.display = "none"; // Hide modal
+  resetGame(); // Reset the game variables and clear intervals
+}
 
+// Event listeners for modal open and close
+startButton.addEventListener("click", openGameModal);
+closeButton.addEventListener("click", closeGameModal);
 
+// Optional: Close modal on outside click
+window.addEventListener("click", (e) => {
+  if (e.target === gameModal) {
+    closeGameModal();
+  }
+});
 
-// Attach event to start button
-startButton.addEventListener("click", startGame);
