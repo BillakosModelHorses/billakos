@@ -64,10 +64,24 @@ canvas.addEventListener("touchstart", (e) => {
   moveBagWithTouch(e);
 }, false);
 
-canvas.addEventListener("touchmove", (e) => {
-  e.preventDefault(); // Prevent default scrolling
-  moveBagWithTouch(e);
-}, false);
+//canvas.addEventListener("touchmove", (e) => {
+  //e.preventDefault(); // Prevent default scrolling
+  //moveBagWithTouch(e);
+//}, false);
+
+canvas.addEventListener('touchmove', function (e) {
+  e.preventDefault(); // Prevent scrolling on touch
+
+  const touch = e.touches[0];
+  const touchX = touch.clientX;
+
+  // Set the basket's position directly, centered under the finger
+  basket.x = touchX - basket.width / 2;
+
+  // Ensure the basket stays within the canvas bounds
+  basket.x = Math.max(0, Math.min(basket.x, canvas.width - basket.width));
+});
+
 
 
 function moveBagWithTouch(e) {
