@@ -31,6 +31,11 @@ let isGameRunning = false;
 const itemImages = [
   "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/1847G_Marc_of_Charm_R_1024x1024.png?v=1731691552?text=A",
   "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-EV-10427_Tight_Lines_in_blanket_Rev_1024x1024.png?v=1730294222?text=B",
+"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Natash_Alt_1024x1024.png?v=1563825462?v=1722012553?v=1730294222?text=C",
+"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-BF-10098_Wild_Things_Green_L_480x480.png?v=1722263282?text=D",
+"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Quill_Gloss_1024x1024.png?v=1563826973?v=1730294222?text=E",
+"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Diana_Alt_1024x1024.png?v=1563825640?v=1563826973?v=1730294222?text=F",
+
 ];
 
 // Controls
@@ -39,18 +44,31 @@ let leftPressed = false;
 
 // Event listeners for keyboard input
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") rightPressed = true;
-  if (e.key === "ArrowLeft") leftPressed = true;
+  if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    e.preventDefault(); // Prevent default scrolling
+    if (e.key === "ArrowRight") rightPressed = true;
+    if (e.key === "ArrowLeft") leftPressed = true;
+  }
 });
 
 document.addEventListener("keyup", (e) => {
-  if (e.key === "ArrowRight") rightPressed = false;
-  if (e.key === "ArrowLeft") leftPressed = false;
+  if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    if (e.key === "ArrowRight") rightPressed = false;
+    if (e.key === "ArrowLeft") leftPressed = false;
+  }
 });
 
 // Touch controls for mobile
-canvas.addEventListener("touchstart", (e) => moveBagWithTouch(e), false);
-canvas.addEventListener("touchmove", (e) => moveBagWithTouch(e), false);
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // Prevent default scrolling
+  moveBagWithTouch(e);
+}, false);
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault(); // Prevent default scrolling
+  moveBagWithTouch(e);
+}, false);
+
 
 function moveBagWithTouch(e) {
   const touchX = e.touches[0].clientX - canvas.getBoundingClientRect().left;
@@ -131,8 +149,8 @@ function moveBag() {
 function checkGameOver() {
   if (missedItems >= maxMisses) {
     isGameRunning = false;
-    alert(`Game Over! Your final score is ${score}`);
-    closeGameModal();
+    alert(`Some Ponies got away! You collected ${score} models :)`);
+    location.reload(); // Refresh the page to reset the game
   }
 }
 
@@ -147,7 +165,7 @@ function resetGame() {
 
 // Load background image
 const backgroundImage = new Image();
-backgroundImage.src = "https://www.horseillustrated.com/wp-content/uploads/BreyerFest-002.jpg"; // Replace with the actual path to your background image
+backgroundImage.src = "https://i.postimg.cc/Kv0ymNzx/26A44A23-C089-472B-8F0B-1692F127D924.png"; // Replace with the actual path to your background image
 
 function drawBackground() {
   ctx.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight); // Match canvas size
@@ -206,14 +224,14 @@ function openGameModal() {
 
 function closeGameModal() {
   gameModal.style.display = "none"; // Hide modal
-  resetGame(); // Reset the game variables and clear intervals
+  location.reload(); // Refresh the page to reset the game
 }
 
 // Event listeners for modal open and close
 startButton.addEventListener("click", openGameModal);
 closeButton.addEventListener("click", closeGameModal);
 
-// Optional: Close modal on outside click
+//Optional: Close modal on outside click
 window.addEventListener("click", (e) => {
   if (e.target === gameModal) {
     closeGameModal();
