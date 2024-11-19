@@ -1,3 +1,8 @@
+body {
+  overflow: hidden;
+}
+
+
 .green-button {
     background-color: #228B22;
     color: white;
