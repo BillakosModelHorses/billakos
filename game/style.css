@@ -1,5 +1,6 @@
 
 
+/* Modal container */
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
@@ -14,9 +15,9 @@
 
 /* Modal content */
 .modal-content {
-    position: left;
+    position: absolute;
     margin: auto;
-    padding: 0;
+    padding: 20px; /* Add padding for spacing */
     top: 50%;
     transform: translateY(-50%);
     width: 90%;
@@ -25,7 +26,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    text-align: center;
+    text-align: left; /* Align text to the left */
     color: white;
 }
 
@@ -44,6 +45,7 @@
 .modal .close:focus {
     color: #ccc;
 }
+
 
 .green-button {
     background-color: #228B22;
