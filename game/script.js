@@ -31,11 +31,10 @@ let isGameRunning = false;
 const itemImages = [
   "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/1847G_Marc_of_Charm_R_1024x1024.png?v=1731691552?text=A",
   "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-EV-10427_Tight_Lines_in_blanket_Rev_1024x1024.png?v=1730294222?text=B",
-"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Natash_Alt_1024x1024.png?v=1563825462?v=1722012553?v=1730294222?text=C",
-"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-BF-10098_Wild_Things_Green_L_480x480.png?v=1722263282?text=D",
-"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Quill_Gloss_1024x1024.png?v=1563826973?v=1730294222?text=E",
-"https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Diana_Alt_1024x1024.png?v=1563825640?v=1563826973?v=1730294222?text=F",
-
+  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Natash_Alt_1024x1024.png?v=1563825462?v=1722012553?v=1730294222?text=C",
+  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-BF-10098_Wild_Things_Green_L_480x480.png?v=1722263282?text=D",
+  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Quill_Gloss_1024x1024.png?v=1563826973?v=1730294222?text=E",
+  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Diana_Alt_1024x1024.png?v=1563825640?v=1563826973?v=1730294222?text=F",
 ];
 
 // Controls
@@ -58,25 +57,30 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-// Touch controls for mobile
-canvas.addEventListener("touchstart", handleTouch, false);
-canvas.addEventListener("touchmove", handleTouch, false);
+// Touch controls for mobile with enhanced movement
+let touchOffsetX = 0;
 
-// Function to handle touch movements
-function handleTouch(e) {
+canvas.addEventListener("touchstart", (e) => {
   e.preventDefault(); // Prevent default scrolling behavior
 
-  // Get touch position relative to canvas
+  // Record the initial touch offset relative to the bag's position
+  const touchX = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+  touchOffsetX = touchX - bagX;
+}, false);
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault(); // Prevent default scrolling behavior
+
+  // Get the new touch position
   const touchX = e.touches[0].clientX - canvas.getBoundingClientRect().left;
 
-  // Center the bag under the touch position
-  bagX = touchX - bagWidth / 2;
+  // Update the bag position based on the touch offset
+  bagX = touchX - touchOffsetX;
 
-  // Ensure the bag stays within the canvas bounds
+  // Ensure the bag stays within canvas bounds
   if (bagX < 0) bagX = 0;
   if (bagX > canvasWidth - bagWidth) bagX = canvasWidth - bagWidth;
-}
-
+}, false);
 
 // Create new item
 function createItem() {
@@ -111,7 +115,8 @@ function moveItems() {
 
 // Load bag image
 const bagImage = new Image();
-bagImage.src = "https://i.postimg.cc/L6tyN9Yn/E21ECC5D-CB7F-44DF-B1DE-4A4C60A72F25.png"; // Replace with the actual path to your bag image
+bagImage.src =
+  "https://i.postimg.cc/L6tyN9Yn/E21ECC5D-CB7F-44DF-B1DE-4A4C60A72F25.png"; // Replace with the actual path to your bag image
 
 // Draw bag
 function drawBag() {
@@ -165,7 +170,8 @@ function resetGame() {
 
 // Load background image
 const backgroundImage = new Image();
-backgroundImage.src = "https://i.postimg.cc/Kv0ymNzx/26A44A23-C089-472B-8F0B-1692F127D924.png"; // Replace with the actual path to your background image
+backgroundImage.src =
+  "https://i.postimg.cc/Kv0ymNzx/26A44A23-C089-472B-8F0B-1692F127D924.png"; // Replace with the actual path to your background image
 
 function drawBackground() {
   ctx.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight); // Match canvas size
