@@ -9,6 +9,17 @@
     transition: background-color 0.3s ease;
 }
 
+.paddockchat-button {
+    background-color: #007C80;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 .custom-link {
     color: #FFFFFF; /* Hex code for a shade of blue */
     text-decoration: none;
