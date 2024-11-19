@@ -67,13 +67,6 @@ function createItem() {
   items.push({ x, y: -itemHeight, image: imageSrc });
 }
 
-// Create multiple items at game start
-function createInitialItems(count) {
-  for (let i = 0; i < count; i++) {
-    createItem();
-  }
-}
-
 // Move items
 function moveItems() {
   for (let i = 0; i < items.length; i++) {
@@ -191,9 +184,6 @@ function startGame() {
   // Clear any existing intervals
   clearInterval(itemCreationInterval);
   clearInterval(speedIncreaseInterval);
-
-  // Create multiple items at game start
-  createInitialItems(10); // Add 10 items initially
 
   // Start new intervals
   itemCreationInterval = setInterval(createItem, 1000); // Create new item every second
