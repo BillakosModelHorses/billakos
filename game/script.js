@@ -59,38 +59,24 @@ document.addEventListener("keyup", (e) => {
 });
 
 // Touch controls for mobile
-canvas.addEventListener("touchstart", (e) => {
-  e.preventDefault(); // Prevent default scrolling
-  moveBagWithTouch(e);
-}, false);
+canvas.addEventListener("touchstart", handleTouch, false);
+canvas.addEventListener("touchmove", handleTouch, false);
 
-//canvas.addEventListener("touchmove", (e) => {
-  //e.preventDefault(); // Prevent default scrolling
-  //moveBagWithTouch(e);
-//}, false);
+// Function to handle touch movements
+function handleTouch(e) {
+  e.preventDefault(); // Prevent default scrolling behavior
 
-canvas.addEventListener('touchmove', function (e) {
-  e.preventDefault(); // Prevent scrolling on touch
-
-  const touch = e.touches[0];
-  const touchX = touch.clientX;
-
-  // Set the basket's position directly, centered under the finger
-  basket.x = touchX - basket.width / 2;
-
-  // Ensure the basket stays within the canvas bounds
-  basket.x = Math.max(0, Math.min(basket.x, canvas.width - basket.width));
-});
-
-
-
-function moveBagWithTouch(e) {
+  // Get touch position relative to canvas
   const touchX = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+
+  // Center the bag under the touch position
   bagX = touchX - bagWidth / 2;
 
+  // Ensure the bag stays within the canvas bounds
   if (bagX < 0) bagX = 0;
   if (bagX > canvasWidth - bagWidth) bagX = canvasWidth - bagWidth;
 }
+
 
 // Create new item
 function createItem() {
