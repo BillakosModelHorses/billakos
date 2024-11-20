@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billakos Model Horses</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Standard Favicon -->
+<link rel="icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png" type="image/png">
+
+<!-- iOS Specific (Apple Touch Icon) -->
+<link rel="apple-touch-icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
+
+<!-- Optional: Fallbacks for other sizes -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>Website Information</h1>
+    </header>
+    <nav>
+        <a href="https://billakosmodelhorses.com/archive.html">Back to Archive Page</a> 
+    </nav>
+    <div class="blog-container">
+        
+
+
+<div class="blog-post">
+    <h3>Paddock Chat Information</h3>
+    <p class="date">Published on 19 November 2024</p>
+    <p>Welcome to the Paddock Chat!! This is an open chat area where people can talk about model horses or anything they want! It won’t be open all the time and will close at certain periods. I’ll likely create a schedule, but for now, it will be random. It could be open for a weekend, a month, or who knows how long! (No one knows lol). Although this chat can be a lot of fun, it’s not the most advanced, and unfortunately, you can’t edit or delete posts. If you need to do so, please contact me via email at billakosmodelhorses@gmail.com. Be sure to use the same username when you leave a message so others can identify you! Please be kind and respectful to the other chatters. While it’s possible no one will join the conversation, I’m determined to create a fun community of model horse lovers. I will be announcing the dates in the Stable Stories and I will send an email to those who subscribed in the mailing list. Right now it is open until 30 November 2024</p>
+    <center><img src="https://i.postimg.cc/3xFR4dBZ/84F3592A-3412-47D8-B6E4-3A5036A61855.png" width="400" height="400"></center>
+    <p>To enter it just go to the Home page or click here:</p><a href="https://billakosmodelhorses.com/paddockchat.html">Paddock Chat</a> 
+    <p>Have fun!</p>
+</div>
+
+<div class="blog-post">
+            <h3>Welcome to Stable Stories!</h3>
+            <p class="date">Published on 4 September 2024</p>
+            <p>I’m really excited to start my own model horse blog! In this space, I’ll be showcasing my collection, sharing my latest projects, and giving my opinions on upcoming releases. There’s so much to look forward to, so stay tuned!</p>
+        </div>
+
+    </div>
+    <br><br><br>
+    <footer>
+        <p>Thank you for reading :)</p>
+    </footer>
+</body>
+</html>
