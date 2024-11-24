@@ -920,11 +920,25 @@ Next year’s Vintage Club is going to be interesting, especially with Breyer ce
 <br>
 
     <footer>
-        <p>Thank you for reading :)</p>
+        <p>Thank you for reading :)<button id="backToTop">Back to Top</button></p>
     </footer>
 
-
 <script>
+// Select the button
+const backToTopButton = document.getElementById("backToTop");
+
+// Add a click event listener
+backToTopButton.addEventListener("click", () => {
+    // Scroll smoothly to the top
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});</script>
+
+   
+<script>
+
     // Function to handle the Enter key press
     function handleKeyPress(event) {
         if (event.key === "Enter") {
