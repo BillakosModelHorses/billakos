@@ -40,7 +40,7 @@
            border-radius: 4px;
        }
 
-       .button-search {
+       button {
            padding: 10px 20px;
            font-size: 16px;
            cursor: pointer;
@@ -50,7 +50,7 @@
            border-radius: 4px;
        }
 
-       .button-search:hover {
+       button:hover {
            background-color: #276C8C; /* Darker green on hover */
        }
    </style>  
@@ -70,7 +70,7 @@
 
    <div class="search-container">
     <input type="text" id="search-bar" placeholder="Search..." onkeydown="handleKeyPress(event)">
-    <button id="button-search" onclick="searchPosts()">Search</button>
+    <button onclick="searchPosts()">Search</button>
 </div>
 
     <div class="blog-container">
