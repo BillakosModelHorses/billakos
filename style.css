@@ -1,20 +1,4 @@
-#backToTop {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-    padding: 2px 2px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-font-family: 'Oswald', Arial, sans-serif;
-}
 
-#backToTop:hover {
-    background-color: white;
-    color: #333;
-font-family: 'Oswald', Arial, sans-serif;
-}
 
 .green-button {
     background-color: #228B22;
