@@ -918,9 +918,23 @@ Next year’s Vintage Club is going to be interesting, especially with Breyer ce
 <br>
 
     <footer>
-        <p>Thank you for reading :)</p>
+        <p>Thank you for reading :) <button id="backToTop">Back to Top</button></p>
     </footer>
- 
+
+
+
+// Select the button
+const backToTopButton = document.getElementById("backToTop");
+
+// Add a click event listener
+backToTopButton.addEventListener("click", () => {
+    // Scroll smoothly to the top
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+   
 <script>
     // Function to handle the Enter key press
     function handleKeyPress(event) {
@@ -929,6 +943,7 @@ Next year’s Vintage Club is going to be interesting, especially with Breyer ce
         }
     }
 
+   
     function searchPosts() {
         let searchQuery = document.getElementById('search-bar').value.trim().toLowerCase(); // Get the query, case-insensitive
         let posts = document.getElementsByClassName('blog-post'); // Get all blog posts
