@@ -67,9 +67,9 @@
     </nav>
 
    <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Search by year">
-        <button onclick="searchPostsByYear()">Search</button>
-    </div>
+    <input type="text" id="search-bar" placeholder="Search..." onkeydown="handleKeyPress(event)">
+    <button onclick="searchPosts()">Search</button>
+</div>
 
     <div class="blog-container">
 
@@ -348,7 +348,7 @@
 </div>
 
 <div class="blog-post">
-    <h3>September’s sneak peak</h3>
+    <h3>October’s sneak peak</h3>
     <p class="date">Published on 31 October 2024</p>
 
     <p>Breyer sent out this month’s newsletter to the collector club members and there was a sneak peak in it!</p>
@@ -922,23 +922,30 @@ Next year’s Vintage Club is going to be interesting, especially with Breyer ce
     </footer>
  
 <script>
-        function searchPostsByYear() {
-            let searchQuery = document.getElementById('search-bar').value.trim();
-            let posts = document.getElementsByClassName('blog-post');
-            
-            for (let i = 0; i < posts.length; i++) {
-                let dateElement = posts[i].getElementsByClassName('date')[0];
-                let postDate = dateElement.innerText;
-                let postYear = postDate.match(/\d{4}/)[0];
-                
-                if (postYear === searchQuery) {
-                    posts[i].style.display = 'block';
-                } else {
-                    posts[i].style.display = 'none';
-                }
+    // Function to handle the Enter key press
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            searchPosts(); // Trigger the search function when Enter is pressed
+        }
+    }
+
+    function searchPosts() {
+        let searchQuery = document.getElementById('search-bar').value.trim().toLowerCase(); // Get the query, case-insensitive
+        let posts = document.getElementsByClassName('blog-post'); // Get all blog posts
+
+        for (let i = 0; i < posts.length; i++) {
+            // Get the full text content of the blog post
+            let postContent = posts[i].innerText.toLowerCase(); // Includes all text inside the blog-post div
+
+            // Check if the content includes the search query
+            if (postContent.includes(searchQuery)) {
+                posts[i].style.display = 'block'; // Show matching posts
+            } else {
+                posts[i].style.display = 'none'; // Hide non-matching posts
             }
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
