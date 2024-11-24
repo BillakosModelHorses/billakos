@@ -1,28 +1,4 @@
-button {
-    font-family: 'Oswald', sans-serif; /* Ensure consistent typography */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 16px;
 
-/* Search button specific styles */
-.search-btn {
-    background-color: #2c789c; /* Specific background color for Search button */
-    color: white;
-    border: none;
-}
-
-.search-btn:hover {
-    background-color: #276C8C; /* Darker background on hover for Search button */
-}
-
-/* Back to Top button specific styles */
-.back-to-top-btn {
-    background-color: #ff4500; /* Orange background for Back to Top button */
-    padding: 5px 5px;
-    color: white;
-}
 
 
 
