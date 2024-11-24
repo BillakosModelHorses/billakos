@@ -19,24 +19,6 @@
    
   <style>
 
-      #backToTop {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-    padding: 2px 2px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-font-family: 'Oswald', Arial, sans-serif;
-}
-
-#backToTop:hover {
-    background-color: white;
-    color: #333;
-font-family: 'Oswald', Arial, sans-serif;
-}
-     
      
        .search-container {
            margin-bottom: 20px;
@@ -938,25 +920,11 @@ Next year’s Vintage Club is going to be interesting, especially with Breyer ce
 <br>
 
     <footer>
-        <p>Thank you for reading :) <button id="backToTop">Back to Top</button></p>
+        <p>Thank you for reading :)</p>
     </footer>
 
 
 
-// Select the button
-const backToTopButton = document.getElementById("backToTop");
-
-// Add a click event listener
-backToTopButton.addEventListener("click", () => {
-    // Scroll smoothly to the top
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
-
-   
-<script>
     // Function to handle the Enter key press
     function handleKeyPress(event) {
         if (event.key === "Enter") {
