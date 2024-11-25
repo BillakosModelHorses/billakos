@@ -22,19 +22,27 @@ const maxMisses = 5;
 
 const items = []; // Falling items array
 const itemWidth = 60;
-const itemHeight = 36;
+const itemHeight = 60;
 let itemSpeed = 3;
 
 let isGameRunning = false;
 
 // Images for items
 const itemImages = [
-  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/1847G_Marc_of_Charm_R_1024x1024.png?v=1731691552?text=A",
-  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-EV-10427_Tight_Lines_in_blanket_Rev_1024x1024.png?v=1730294222?text=B",
-  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Natash_Alt_1024x1024.png?v=1563825462?v=1722012553?v=1730294222?text=C",
-  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/B-BF-10098_Wild_Things_Green_L_480x480.png?v=1722263282?text=D",
-  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Quill_Gloss_1024x1024.png?v=1563826973?v=1730294222?text=E",
-  "https://cdn.shopify.com/s/files/1/0015/8898/5892/files/Diana_Alt_1024x1024.png?v=1563825640?v=1563826973?v=1730294222?text=F",
+  "https://i.postimg.cc/fbKqSZjJ/4087-C893-8-D2-D-4197-BADD-392-F80-C0-CEF4.png?v=1731691552?text=A",
+  "https://i.postimg.cc/W3NK5tbG/4-B1107-CA-21-CA-4-B9-E-8647-74967-C040-F14.png?v=1730294222?text=B",
+  "https://i.postimg.cc/fLqH5KPs/6-C4-DE37-F-8047-4-D83-A111-1-CC8-C558-BC1-C.png?v=1563825462?v=1722012553?v=1730294222?text=C",
+  "https://i.postimg.cc/BQrVdmnQ/7-F1999-A8-E275-4-DF2-A29-A-AE74663-D0-B78.png?v=1722263282?text=D",
+  "https://i.postimg.cc/J4DF6fm2/8-C6600-A9-B3-C4-4-E8-A-9-A15-6-D00-C6-A7-CE37.png?v=1563826973?v=1730294222?text=E",
+  "https://i.postimg.cc/7hbRyczb/AA96080-B-BD6-C-45-D5-A28-E-277-E25-DE0-E6-E.png?v=1563825640?v=1563826973?v=1730294222?text=F",
+
+  "https://i.postimg.cc/0NxHNrST/AEA17193-29-C1-4-FC8-A2-E4-03-BC015-C02-F8.png?v=1731691552?text=G",
+  "https://i.postimg.cc/xC6ZhYcW/B9-F0835-B-DD2-B-4-BFC-8073-6-DC5-D596-E33-E.png?text=H",
+  "https://i.postimg.cc/YSfZNQk2/D1-A6564-C-C325-4-A19-8-B75-EA8-C72-C37-FEF.png?v=1563825462?v=1722012553?v=1730294222?text=I",
+  "https://i.postimg.cc/NMjJ1Vpb/F399-E083-BC3-E-4-E54-AB7-D-BBA7-B9601934.png?v=1722263282?text=J",
+  "https://i.postimg.cc/DfYDcvVG/F930-C266-993-E-4-CBD-9731-3766016-C8400.png?v=1730294222?text=K",
+  "https://i.postimg.cc/904Lk937/FABB6-A5-C-8-DA3-46-F6-BB8-F-7-C82588-A47-E8.png?v=1563825640?v=1563826973?v=1730294222?text=L",
+  "https://i.postimg.cc/WzKHpnm8/FADCD8-B3-F4-E9-4-CC3-AB19-BD85934-A6-E84.png?v=1563825640?v=1563826973?v=1730294222?text=M",
 ];
 
 // Controls
