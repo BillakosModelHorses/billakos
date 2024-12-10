@@ -272,9 +272,6 @@ async function deleteComment(commentId) {
     </section>
 
 
-<center><button onclick="copyCode()" class="green-button">Copy Month Archive code</button></center>
-
-
 
 
 
@@ -302,75 +299,49 @@ async function deleteComment(commentId) {
 
 
 
-<!-- Script to Copy Text -->
-<script>
-function copyCode() {
-    // Define the code you want to copy as a string
-    const code = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Billakos Model Horses</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Standard Favicon -->
-<link rel="icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png" type="image/png">
+<div class="shop-container">
 
-<!-- iOS Specific (Apple Touch Icon) -->
-<link rel="apple-touch-icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
 
-<!-- Optional: Fallbacks for other sizes -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png"> 
 
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <header>
-        <h1>MONTH 2024</h1>
-    </header>
-    <nav>
-        <a href="https://billakosmodelhorses.com/archive.html">Back to Archive Page</a> 
-    </nav>
-    <div class="blog-container">
-        <div class="blog-post">
-            <h3><center>Posts will go up after the month ends!</center></h3>
+<div class="product-card">
+            <h3>Moderation</h3>
+            
+            <a href="https://billakosmodelhorses.com/admin/paddockchatmoderation.html">Paddock Chat</a><br>
+<a href="https://billakosmodelhorses.com/admin/commentsmoderation.html">Comments</a>
         </div>
-    </div>
 
-     
-    <br><br><br>
-    <footer>
-        <p>Thank you for reading :)</p>
-    </footer>
-</body>
-</html>`;
+<div class="product-card">
+            
+            <h3>Codes</h3>
+            
+            <a href="https://billakosmodelhorses.com/admin/achivemonthlycode">Archive Monthly Code</a>
+        </div>
 
-    // Create a temporary text area to hold the code
-    const tempTextArea = document.createElement("textarea");
-    tempTextArea.value = code;
-    document.body.appendChild(tempTextArea);
+<div class="product-card">
+            
+            <h3>Tips/Notes</h3>
+            
+            <ul>
+    <li>Otan exo polles foto kathetes apo iphone na kano width 300 height 400</li>
+</ul>
+        </div>
+           
 
-    // Select and copy the text
-    tempTextArea.select();
-    tempTextArea.setSelectionRange(0, 99999); // For mobile devices
-    document.execCommand("copy");
+        <!-- 
+        <div class="product-card">
+            <img src="link" alt="horse">
+            <h3>horse tittle</h3>
+            <p>item description</p>
+            <div class="price">Price Range: xx€ / $xx</div>
+            <button><a href="mailto:billakosmodelhorses@gmail.com" class="custom-link">Contact</a></button>
+        </div> -->
 
-    // Remove the temporary text area
-    document.body.removeChild(tempTextArea);
-
-    // Optionally, notify the user
-    alert("Code copied!");
-}
-</script>
+        
+    </div> 
 
     
 
 </div>
-   
-
-</body>
-</html>
    
 
 </body>
