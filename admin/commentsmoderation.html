@@ -37,7 +37,7 @@
             if (password === correctPassword) {
                 document.getElementById("content").style.display = "block";
             } else {
-                alert("Incorrect password! Redirecting to home page.");
+                alert("Incorrect password! Redirecting to admin page.");
                 window.location.href = "https://billakosmodelhorses.com/admin.html";
             }
         }
@@ -216,27 +216,29 @@ async function editComment(commentId, newText) {
 
 
 
- 
             
         <div class="comments-display-container">
-            <h3>Messages:</h3>
+            <h3>Comments:</h3>
             <div id="commentsSection">
-                
+                <!-- User comments will appear here -->
             </div>
         </div>
 
-<div class="comment-container">
-            <h2>Leave a Message:</h2>
+    <div class="comment-container">
+            <h2>Leave a Comment:</h2>
             <form id="commentForm">
                 <label for="nameInput">Your Name:</label><br>
                 <input type="text" id="nameInput" placeholder="Enter your name" required><br>
                 
-                <label for="commentInput">Your Message:</label><br>
+                <label for="commentInput">Your Comment:</label><br>
                 <textarea id="commentInput" rows="4" cols="50" placeholder="Write your comment here..." required></textarea><br>
                 
-                <button type="submit">Submit Message</button>
+                <button type="submit">Submit Comment</button>
             </form>
         </div>
+ 
+            
+        
 
 
 
