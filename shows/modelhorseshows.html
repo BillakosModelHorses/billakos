@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billakos Model Horses</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Standard Favicon -->
+<link rel="icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png" type="image/png">
+
+<!-- iOS Specific (Apple Touch Icon) -->
+<link rel="apple-touch-icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
+
+<!-- Optional: Fallbacks for other sizes -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+
+<script type="module">
+    // Import Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
+        authDomain: "billakosmodelhorses.firebaseapp.com",
+        projectId: "billakosmodelhorses",
+        storageBucket: "billakosmodelhorses.appspot.com",
+        messagingSenderId: "988607299628",
+        appId: "1:988607299628:web:b7c2139b095a0afba8d189",
+        measurementId: "G-RWHNVMHN2P"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // Function to load comments
+    async function loadComments() {
+        const commentsCollection = collection(db, 'showusernames');
+        const q = query(commentsCollection, orderBy('timestamp', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const comments = querySnapshot.docs.map(doc => doc.data());
+        renderComments(comments);
+    }
+
+    // Function to submit a new username
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('commentForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('nameInput').value;
+
+            if (username) {
+                try {
+                    await addDoc(collection(db, 'showusernames'), {
+                        username: username,
+                        comment: "Not entered", // Default comment
+                        timestamp: serverTimestamp()
+                    });
+
+                    document.getElementById('nameInput').value = '';
+                    loadComments(); // Reload comments after submission
+                } catch (error) {
+                    console.error("Error adding username: ", error);
+                }
+            } else {
+                console.log("Username cannot be empty.");
+            }
+        });
+
+        // Load comments when the page loads
+        loadComments();
+    });
+
+    function renderComments(comments) {
+        const commentsSection = document.getElementById('commentsSection');
+        commentsSection.innerHTML = ''; // Clear existing comments
+
+        comments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.style.marginBottom = "15px";
+
+            const namePara = document.createElement('p');
+            namePara.style.fontWeight = "bold";
+            namePara.textContent = `${comment.username}:`;
+
+            const commentPara = document.createElement('p');
+            commentPara.innerHTML = comment.comment.replace(/\n/g, '<br>'); // Replace newlines with <br>
+
+            commentDiv.appendChild(namePara);
+            commentDiv.appendChild(commentPara);
+
+            commentsSection.appendChild(commentDiv);
+        });
+    }
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+    <header>
+        <h1>BMH Model Horse Shows</h1>
+    </header>
+
+    <nav>
+        <a href="https://billakosmodelhorses.com">Back to Home page</a> 
+    </nav>
+
+<section>
+
+<center><h2>Welcome to the BMH model horse shows!</h2></center>
+
+ <center><img src="https://i.postimg.cc/tJxbjT36/Untitled692-20250307120252.png" width="250" height="250"></center>
+
+<P>Welcome to my online model horse show series! I’ve decided to start hosting my own shows using the omhps.com platform. Most of these shows will be free, and in the future, I may host a benefit show to support a local charity here in Greece.
+
+Please note that I am not experienced in hosting shows, but I believe it’s always good to try something new! This will be an ongoing show series, and I may even host finals for the champions of previous shows.
+
+I plan to display the winning horses here. If you prefer not to have your image featured, just let me know, and I’ll be happy to remove it.
+
+Have fun! </P>
+
+
+
+<center><h3><a href="https://omhps.com" class="green-button">omhps.com</a></h3></center>
+    
+<P>To enter the show, you must sign up by submitting your OMHPS username here. Once I accept your entry, I will change the status from "Not Entered" to "Accepted."
+
+At the end of each show, I will delete all usernames from this list. When the next show is available, you will be able to enter again by submitting your username.</P>
+
+</section>
+
+
+
+
+
+<!-- HTML Form -->
+<div class="comment-container">
+    <h2>Enter Your OMHPS Username:</h2>
+    <form id="commentForm">
+        <label for="usernameInput">Username:</label><br>
+        <input type="text" id="nameInput" placeholder="Enter your username" required><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</div> 
+
+<!-- Display Comments -->
+<div class="comments-display-container">
+    <h3>Usernames:</h3>
+    <div id="commentsSection"></div>
+</div>
+
+
+
+
+
+
+
+
+<div class="blog-container">
+
+
+        <div class="blog-post">
+            <h3><center>Previous Champions</center></h3>
+
+           
+
+        </div>
+
+
+    </div>
+    </div>
+
+     
+    <br><br><br>
+    <footer>
+        <p>Registrations are Open until 9 April :)</p>
+    </footer>
+</body>
+</html>
