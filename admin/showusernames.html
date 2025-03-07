@@ -218,14 +218,25 @@ async function editComment(commentId, newText) {
 
             
         <div class="comments-display-container">
-            <h3>Comments:</h3>
+            <h3>Usernames:</h3>
             <div id="commentsSection">
                 <!-- User comments will appear here -->
             </div>
         </div>
 
     
- 
+  <div class="comment-container">
+            <h2>Leave a Comment:</h2>
+            <form id="commentForm">
+                <label for="nameInput">Your Name:</label><br>
+                <input type="text" id="nameInput" placeholder="Enter your name" required><br>
+                
+                <label for="commentInput">Your Comment:</label><br>
+                <textarea id="commentInput" rows="4" cols="50" placeholder="Write your comment here..." required></textarea><br>
+                
+                <button type="submit">Submit Comment</button>
+            </form>
+        </div>
             
         
 
