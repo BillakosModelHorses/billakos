@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billakos Model Horses</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Standard Favicon -->
+<link rel="icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png" type="image/png">
+
+<!-- iOS Specific (Apple Touch Icon) -->
+<link rel="apple-touch-icon" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
+
+<!-- Optional: Fallbacks for other sizes -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/nLyg39tP/6205-B9-F2-AE7-D-4105-AE47-78-BF6-B5-B531-A.png"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+<body>
+    <header>
+        <h1>March 2025</h1>
+    </header>
+
+    <nav>
+        <a href="https://billakosmodelhorses.com/archive.html">Back to Archive Page</a> 
+    </nav>
+
+
+    <div class="blog-container">
+
+
+        <div class="blog-post">
+            <h3><center>Posts will go up after the Month ends!</center></h3>
+        </div>
+
+
+    </div>
+
+     
+    <br><br><br>
+    <footer>
+        <p>Thank you for reading :)</p>
+    </footer>
+</body>
+</html>
