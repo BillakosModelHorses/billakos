@@ -132,11 +132,10 @@
     
     
         <h2>Welcome!</h2>
-        <p>
+        
+<p class="read-more-paragraph">
   Hello! My name is Billy, and I'm thrilled to announce that I'm creating my very own website dedicated to model horses! My journey began in childhood when I started playing with and collecting Schleich horses. As my love for horses grew, so did my interest in riding. One day, while browsing a local hobby store, I stumbled upon some Breyer Stablemates. I decided to buy one, not knowing if I'd like it, but the moment I unboxed my Hanoverian horse, I was blown away by the quality. It wasn't long before I went back to the store and bought the rest of the models they had.
-</p>
-<p>
-  Although I first became interested in Breyers in 2020,
+<br><br>Although I first became interested in Breyers in 2020,
   <span class="dots">...</span>
   <span class="more-text" style="display: none;">
     I was discouraged because, living in Europe, I thought they were impossible to obtain. I eventually gave up on the idea of collecting them. But for Christmas 2021, I told my dad about my passion for Breyers, and he managed to find an online store where we ordered a few as my present. That marked the beginning of my collection, which has since grown to include more and more models, even some limited editions. And here I am today!
@@ -236,6 +235,7 @@
     const btn = document.querySelector('.read-more-btn');
     const moreText = document.querySelector('.more-text');
     const dots = document.querySelector('.dots');
+    const paragraph = document.querySelector('.read-more-paragraph'); // Add a class to your <p> tag
 
     btn.addEventListener('click', () => {
       if (moreText.style.display === "none") {
@@ -246,6 +246,9 @@
         moreText.style.display = "none";
         dots.style.display = "inline";
         btn.textContent = "Read More";
+
+        // Scroll to top of paragraph smoothly
+        paragraph.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
@@ -254,6 +257,8 @@
 
 
 
+
 </body>
 </html>
+
 
