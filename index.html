@@ -132,14 +132,28 @@
     
     
         <h2>Welcome!</h2>
-        <p>Hello! My name is Billy, and I'm thrilled to announce that I'm creating my very own website dedicated to model horses! My journey began in childhood when I started playing with and collecting Schleich horses. As my love for horses grew, so did my interest in riding. One day, while browsing a local hobby store, I stumbled upon some Breyer Stablemates. I decided to buy one, not knowing if I'd like it, but the moment I unboxed my Hanoverian horse, I was blown away by the quality. It wasn't long before I went back to the store and bought the rest of the models they had.</p>
-        
-        <p>Although I first became interested in Breyers in 2020, I was discouraged because, living in Europe, I thought they were impossible to obtain. I eventually gave up on the idea of collecting them. But for Christmas 2021, I told my dad about my passion for Breyers, and he managed to find an online store where we ordered a few as my present. That marked the beginning of my collection, which has since grown to include more and more models, even some limited editions. And here I am today!</p>
-        
-        <p>On this website, you'll find my blog, which I've named Stable Stories, where I’ll share many aspects of my journey with you and many more. There's also an ISO page so I can share the models I am looking for. Moreover, there is an archive page so you can find posts by month and theme! One exciting addition to my page is the mini game I created (Catch the Horses). You will find it below!! Last but not least I made a discussion area with the name Paddock Chat!</p>
+        <p>
+  Hello! My name is Billy, and I'm thrilled to announce that I'm creating my very own website dedicated to model horses! My journey began in childhood when I started playing with and collecting Schleich horses. As my love for horses grew, so did my interest in riding. One day, while browsing a local hobby store, I stumbled upon some Breyer Stablemates. I decided to buy one, not knowing if I'd like it, but the moment I unboxed my Hanoverian horse, I was blown away by the quality. It wasn't long before I went back to the store and bought the rest of the models they had.
+</p>
+<p>
+  Although I first became interested in Breyers in 2020,
+  <span class="dots">...</span>
+  <span class="more-text" style="display: none;">
+    I was discouraged because, living in Europe, I thought they were impossible to obtain. I eventually gave up on the idea of collecting them. But for Christmas 2021, I told my dad about my passion for Breyers, and he managed to find an online store where we ordered a few as my present. That marked the beginning of my collection, which has since grown to include more and more models, even some limited editions. And here I am today!
 
-        <p>Although the Paddock Chat chat can be a lot of fun, it’s not the most advanced, and unfortunately, you can’t edit or delete posts. If you need to do so, please contact me via email at billakosmodelhorses@gmail.com. Be sure to use the same username when you leave a message so others can identify you! Please be kind and respectful to the other chatters. While it’s possible no one will join the conversation, I’m determined to create a fun community of model horse lovers.Have fun!</p>
-        
+    <br><br>
+
+    On this website, you'll find my blog, which I've named <strong>Stable Stories</strong>, where I’ll share many aspects of my journey with you and more. There's also an ISO page so I can share the models I am looking for. Moreover, there is an archive page so you can find posts by month and theme! One exciting addition to my page is the mini game I created (Catch the Horses). You will find it below!! Last but not least, I made a discussion area with the name <strong>Paddock Chat</strong>!
+
+    <br><br>
+
+    Although the Paddock Chat can be a lot of fun, it’s not the most advanced, and unfortunately, you can’t edit or delete posts. If you need to do so, please contact me via email at <a href="mailto:billakosmodelhorses@gmail.com">billakosmodelhorses@gmail.com</a>. Be sure to use the same username when you leave a message so others can identify you! Please be kind and respectful to the other chatters. While it’s possible no one will join the conversation, I’m determined to create a fun community of model horse lovers. Have fun!
+  </span>
+</p>
+
+<button class="read-more-btn">Read More</button>
+
+
         <p>I'm excited to have you join me on this journey!</p>
         <br>
 
@@ -215,10 +229,31 @@
     <footer>
         <p>Thank you for reading :)</p>
     </footer>
-</body>
-</html>
 
-    
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector('.read-more-btn');
+    const moreText = document.querySelector('.more-text');
+    const dots = document.querySelector('.dots');
+
+    btn.addEventListener('click', () => {
+      if (moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        dots.style.display = "none";
+        btn.textContent = "Read Less";
+      } else {
+        moreText.style.display = "none";
+        dots.style.display = "inline";
+        btn.textContent = "Read More";
+      }
+    });
+  });
+</script>
+
+
+
+
 </body>
 </html>
 
