@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.createElement("div");
     popup.innerHTML = `
       <h1>🎃 Happy Halloween! 👻</h1>
-      <p>Wishing you a spooky, fun-filled night!</p>
+      <p>Wishing you a spooky, fun filled season!</p>
       <button>Close</button>
     `;
     popup.style.position = "fixed";
@@ -150,14 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, 2000); // appears 2 seconds after page load
 
-  // ---- 6. Optional: Spooky music ----
-  
-  const audio = new Audio("spooky.mp3");
-  audio.loop = true;
-  audio.volume = 0.2;
-  audio.play();
-  
-});
+ 
 
 
 
