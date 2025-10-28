@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   animateFog();
 
-  // ---- 4. Spooky hover interaction ----
+  // ---- 4. Spooky glow trail on mouse move ----
   document.addEventListener("mousemove", (e) => {
     const glow = document.createElement("div");
     glow.style.position = "fixed";
@@ -102,16 +102,62 @@ document.addEventListener("DOMContentLoaded", () => {
     glow.style.background = "rgba(255,140,0,0.3)";
     glow.style.pointerEvents = "none";
     glow.style.zIndex = 9999;
+    glow.style.transition = "opacity 0.5s ease-out";
     document.body.appendChild(glow);
-
+    setTimeout(() => (glow.style.opacity = 0), 100);
     setTimeout(() => glow.remove(), 500);
   });
 
-  // ---- 5. Spooky sound (optional, uncomment to use) ----
-  /*
+  // ---- 5. "Happy Halloween" pop-up ----
+  setTimeout(() => {
+    const popup = document.createElement("div");
+    popup.innerHTML = `
+      <h1>🎃 Happy Halloween! 👻</h1>
+      <p>Wishing you a spooky, fun-filled night!</p>
+      <button>Close</button>
+    `;
+    popup.style.position = "fixed";
+    popup.style.top = "50%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.background = "rgba(0, 0, 0, 0.85)";
+    popup.style.color = "#ffa500";
+    popup.style.padding = "30px 40px";
+    popup.style.border = "2px solid orange";
+    popup.style.borderRadius = "20px";
+    popup.style.textAlign = "center";
+    popup.style.zIndex = 10000;
+    popup.style.fontFamily = "cursive";
+    popup.style.boxShadow = "0 0 30px orange";
+    popup.style.opacity = 0;
+    popup.style.transition = "opacity 1s ease-in-out";
+    document.body.appendChild(popup);
+
+    // Fade in
+    setTimeout(() => (popup.style.opacity = 1), 50);
+
+    // Close button
+    popup.querySelector("button").style.marginTop = "15px";
+    popup.querySelector("button").style.padding = "8px 20px";
+    popup.querySelector("button").style.background = "orange";
+    popup.querySelector("button").style.color = "black";
+    popup.querySelector("button").style.border = "none";
+    popup.querySelector("button").style.borderRadius = "10px";
+    popup.querySelector("button").style.cursor = "pointer";
+    popup.querySelector("button").addEventListener("click", () => {
+      popup.style.opacity = 0;
+      setTimeout(() => popup.remove(), 1000);
+    });
+  }, 2000); // appears 2 seconds after page load
+
+  // ---- 6. Optional: Spooky music ----
+  
   const audio = new Audio("spooky.mp3");
   audio.loop = true;
   audio.volume = 0.2;
   audio.play();
-  */
+  
 });
+
+
+
