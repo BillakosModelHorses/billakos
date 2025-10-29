@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.createElement("div");
     popup.innerHTML = `
       <h1>🎃 Happy Halloween! 👻</h1>
-      <p>Wishing you a spooky, fun-filled night!</p>
+      <p>Wishing you a spooky, fun filled season!</p>
       <button>Close</button>
     `;
     popup.style.position = "fixed";
