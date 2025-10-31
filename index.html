@@ -107,6 +107,44 @@
     });
 }
 
+
+        // ====== EMAIL SUBMISSION ======
+document.addEventListener('DOMContentLoaded', () => {
+  const subscribeForm = document.getElementById('subscribeForm');
+  const subscribeMessage = document.getElementById('subscribeMessage');
+
+  if (subscribeForm) {
+    subscribeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('emailInput');
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        subscribeMessage.style.color = "red";
+        subscribeMessage.textContent = "Please enter a valid email.";
+        return;
+      }
+
+      try {
+        // Save email + timestamp to Firestore collection "emails"
+        await addDoc(collection(db, 'emails'), {
+          email: email,
+          timestamp: serverTimestamp()
+        });
+
+        subscribeMessage.style.color = "green";
+        subscribeMessage.textContent = "✅ Thanks for subscribing!";
+        emailInput.value = "";
+      } catch (error) {
+        console.error("Error saving email:", error);
+        subscribeMessage.style.color = "red";
+        subscribeMessage.textContent = "❌ Failed to save email.";
+      }
+    });
+  }
+});
+
+        
     </script>
 </head>
 <body>
@@ -283,45 +321,6 @@
     });
   });
 
-
-// ====== EMAIL SUBMISSION ======
-document.addEventListener('DOMContentLoaded', () => {
-  const subscribeForm = document.getElementById('subscribeForm');
-  const subscribeMessage = document.getElementById('subscribeMessage');
-
-  if (subscribeForm) {
-    subscribeForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const emailInput = document.getElementById('emailInput');
-      const email = emailInput.value.trim();
-
-      if (!email) {
-        subscribeMessage.style.color = "red";
-        subscribeMessage.textContent = "Please enter a valid email.";
-        return;
-      }
-
-      try {
-        // Save email + timestamp to Firestore collection "subscribers"
-        await addDoc(collection(db, 'emails'), {
-          email: email,
-          timestamp: serverTimestamp()
-        });
-
-        subscribeMessage.style.color = "green";
-        subscribeMessage.textContent = "✅ Thanks for subscribing!";
-        emailInput.value = "";
-      } catch (error) {
-        console.error("Error saving email:", error);
-        subscribeMessage.style.color = "red";
-        subscribeMessage.textContent = "❌ Failed to save email.";
-      }
-    });
-  }
-});
-
-
-    
     
 </script>
 
@@ -332,6 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
