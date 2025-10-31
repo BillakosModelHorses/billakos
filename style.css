@@ -418,46 +418,23 @@ section {
 
 
 
-/* Sparkle container around a box */
 .sparkle-wrapper {
-    position: relative; /* Needed for absolute sparkles */
+    position: relative;
     display: flex;
-    justify-content: center; /* Keep box centered */
+    justify-content: center;
 }
 
-/* Sparkle elements */
 .outside-sparkle {
     position: absolute;
     color: gold;
     font-size: 1.5em;
     pointer-events: none;
     filter: drop-shadow(0 0 6px gold);
-    animation: sparkle 2s infinite ease-in-out;
     opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-/* Animate twinkle */
-@keyframes sparkle {
-    0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
-    50% { opacity: 1; transform: translateY(-5px) scale(1.3); }
-}
-
-/* Position sparkles outside left and right */
-.sparkle-left {
-    left: -30px;
-    top: 20%;
-}
-
-.sparkle-right {
-    right: -30px;
-    top: 20%;
-}
-
-/* Multiple sparkles at different positions */
-.sparkle-left:nth-child(2) { top: 50%; animation-delay: 0.5s; }
-.sparkle-right:nth-child(2) { top: 60%; animation-delay: 1s; }
-
-/* Responsive scaling for smaller screens */
+/* Responsive scaling */
 @media (max-width: 600px) {
     .outside-sparkle {
         font-size: 1.2em;
