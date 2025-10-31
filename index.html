@@ -344,11 +344,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
 </script>
 
-    <script>
-function createSparkles(wrapperSelector, count = 10) {
+   <script>
+function createSparkles(wrapperSelector, count = 15) {
     const wrapper = document.querySelector(wrapperSelector);
     const box = wrapper.querySelector('div'); // assumes only one inner box
     const boxHeight = box.offsetHeight;
+    const wrapperWidth = wrapper.offsetWidth;
 
     for (let i = 0; i < count; i++) {
         const sparkle = document.createElement('div');
@@ -358,31 +359,31 @@ function createSparkles(wrapperSelector, count = 10) {
 
         // Animate repeatedly
         setInterval(() => {
-            // Random side (left or right)
-            const side = Math.random() < 0.5 ? 'left' : 'right';
-            sparkle.style[side] = '-20px';
-            sparkle.style[side === 'left' ? 'right' : 'left'] = 'auto';
+            // Random horizontal position within wrapper
+            const left = Math.random() * (wrapperWidth - 20); // avoid clipping edges
+            sparkle.style.left = `${left}px`;
 
-            // Random horizontal offset along the box height (vertical stays constant)
+            // Random vertical position within box height
             const top = Math.random() * (boxHeight - 20);
             sparkle.style.top = `${top}px`;
 
             // Fade in
             sparkle.style.opacity = 1;
 
-            // Fade out after a short time
+            // Fade out after short time
             setTimeout(() => {
                 sparkle.style.opacity = 0;
             }, 500 + Math.random() * 500);
-        }, 1000 + Math.random() * 2000);
+        }, 800 + Math.random() * 1500); // random interval
     }
 }
 
 // Initialize sparkles
 document.addEventListener('DOMContentLoaded', () => {
-    createSparkles('.sparkle-wrapper', 8); // 8 sparkles per box
+    createSparkles('.sparkle-wrapper', 15); // 15 sparkles per box
 });
 </script>
+
 
 
 
@@ -393,6 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
