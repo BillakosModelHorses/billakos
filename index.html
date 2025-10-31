@@ -277,8 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <br>
         <br>
 
-<div class="sparkle-wrapper">
-    
     
          <div class="comment-container">
 
@@ -294,8 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </form>
         </div>
 
-</div>
-    <div class="sparkle-wrapper">
+
             
         <div class="comments-display-container">
             <h3>Comments:</h3>
@@ -304,9 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
 
-    
-    
-</div>
 
         <br>
         <br>
@@ -347,7 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
    <script>
 function createSparkles(wrapperSelector, count = 15) {
     const wrapper = document.querySelector(wrapperSelector);
-    const box = wrapper.querySelector('div'); // assumes only one inner box
+    const box = wrapper.querySelector('div'); // only inner box
+    const wrapperHeight = wrapper.offsetHeight;
+    const boxTop = box.offsetTop;
     const boxHeight = box.offsetHeight;
     const wrapperWidth = wrapper.offsetWidth;
 
@@ -360,11 +356,18 @@ function createSparkles(wrapperSelector, count = 15) {
         // Animate repeatedly
         setInterval(() => {
             // Random horizontal position within wrapper
-            const left = Math.random() * (wrapperWidth - 20); // avoid clipping edges
+            const left = Math.random() * (wrapperWidth - 20);
             sparkle.style.left = `${left}px`;
 
-            // Random vertical position within box height
-            const top = Math.random() * (boxHeight - 20);
+            // Random vertical position: ABOVE or BELOW box
+            let top;
+            if (Math.random() < 0.5) {
+                // Above the box
+                top = Math.random() * boxTop;
+            } else {
+                // Below the box
+                top = boxTop + boxHeight + Math.random() * (wrapperHeight - (boxTop + boxHeight));
+            }
             sparkle.style.top = `${top}px`;
 
             // Fade in
@@ -374,15 +377,16 @@ function createSparkles(wrapperSelector, count = 15) {
             setTimeout(() => {
                 sparkle.style.opacity = 0;
             }, 500 + Math.random() * 500);
-        }, 800 + Math.random() * 1500); // random interval
+        }, 800 + Math.random() * 1500);
     }
 }
 
 // Initialize sparkles
 document.addEventListener('DOMContentLoaded', () => {
-    createSparkles('.sparkle-wrapper', 15); // 15 sparkles per box
+    createSparkles('.sparkle-wrapper', 15);
 });
 </script>
+
 
 
 
@@ -394,6 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
