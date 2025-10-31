@@ -339,13 +339,13 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
    <script>
-function createSparkles(wrapperSelector, count = 15) {
+function createSparkles(wrapperSelector, count = 20) {
     const wrapper = document.querySelector(wrapperSelector);
-    const box = wrapper.querySelector('div'); // only inner box
-    const wrapperHeight = wrapper.offsetHeight;
-    const boxTop = box.offsetTop;
-    const boxHeight = box.offsetHeight;
+    const box = wrapper.querySelector('div'); // inner box
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const boxRect = box.getBoundingClientRect();
     const wrapperWidth = wrapper.offsetWidth;
+    const wrapperHeight = wrapper.offsetHeight;
 
     for (let i = 0; i < count; i++) {
         const sparkle = document.createElement('div');
@@ -353,39 +353,48 @@ function createSparkles(wrapperSelector, count = 15) {
         sparkle.textContent = '✨';
         wrapper.appendChild(sparkle);
 
-        // Animate repeatedly
         setInterval(() => {
-            // Random horizontal position within wrapper
-            const left = Math.random() * (wrapperWidth - 20);
-            sparkle.style.left = `${left}px`;
+            let left, top;
 
-            // Random vertical position: ABOVE or BELOW box
-            let top;
-            if (Math.random() < 0.5) {
-                // Above the box
-                top = Math.random() * boxTop;
-            } else {
-                // Below the box
-                top = boxTop + boxHeight + Math.random() * (wrapperHeight - (boxTop + boxHeight));
+            const area = Math.floor(Math.random() * 4); // 0=top,1=bottom,2=left,3=right
+
+            switch(area) {
+                case 0: // top
+                    top = Math.random() * (box.offsetTop); 
+                    left = Math.random() * wrapperWidth;
+                    break;
+                case 1: // bottom
+                    top = box.offsetTop + box.offsetHeight + Math.random() * (wrapperHeight - (box.offsetTop + box.offsetHeight));
+                    left = Math.random() * wrapperWidth;
+                    break;
+                case 2: // left
+                    top = box.offsetTop + Math.random() * box.offsetHeight;
+                    left = Math.random() * (box.offsetLeft); 
+                    break;
+                case 3: // right
+                    top = box.offsetTop + Math.random() * box.offsetHeight;
+                    left = box.offsetLeft + box.offsetWidth + Math.random() * (wrapperWidth - (box.offsetLeft + box.offsetWidth));
+                    break;
             }
-            sparkle.style.top = `${top}px`;
 
-            // Fade in
+            sparkle.style.left = `${left}px`;
+            sparkle.style.top = `${top}px`;
             sparkle.style.opacity = 1;
 
-            // Fade out after short time
             setTimeout(() => {
                 sparkle.style.opacity = 0;
             }, 500 + Math.random() * 500);
+
         }, 800 + Math.random() * 1500);
     }
 }
 
-// Initialize sparkles
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    createSparkles('.sparkle-wrapper', 15);
+    createSparkles('.sparkle-wrapper', 20); // 20 sparkles per box
 });
 </script>
+
 
 
 
@@ -398,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
