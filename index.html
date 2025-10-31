@@ -212,21 +212,20 @@ document.addEventListener('DOMContentLoaded', () => {
         <br>
 
     <div class="subscribe-container">
-
-<div class="sparkle sparkle-left"></div>
-  <div class="sparkle sparkle-right"></div>
         
-  <h2>Subscribe for Updates!</h2>
+  <h3>Subscribe for Post Reminders!</h3>
   <form id="subscribeForm">
     <input type="email" id="emailInput" placeholder="Enter your email" required>
     <button type="submit">Subscribe</button>
   </form>
   <p id="subscribeMessage" style="margin-top: 10px; color: green;"></p>
+        <p>There won't be more than 2 mails a month. Probably 0-1 per month. If you want to unsubscribe, please <a href="mailto:billakosmodelhorses@gmail.com">email me.</a></p>
 </div>
 
 
-        <center><a href="mailto:billakosmodelhorses@gmail.com" class="green-button">Click here to send me an email if you want to sign up for Post reminders (1-2 a month)</a></center>
-<br>
+        <!--<center><a href="mailto:billakosmodelhorses@gmail.com" class="green-button">Click here to send me an email if you want to sign up for Post reminders (1-2 a month)</a></center>
+         -->
+    <br>
 
         <center> <form action="https://www.paypal.com/donate" method="post" target="_top">
 <input type="hidden" name="hosted_button_id" value="ADYFTY9U2PAJU" />
@@ -329,25 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".subscribe-container");
-  if (!container) return;
-
-  // Create 6 sparkles
-  for (let i = 0; i < 6; i++) {
-    const s = document.createElement("div");
-    s.classList.add("sparkle");
-    s.style.left = Math.random() * 100 + "%";
-    s.style.top = Math.random() * 100 + "%";
-    s.style.animationDelay = (Math.random() * 4) + "s";
-    s.style.animationDuration = (3 + Math.random() * 2) + "s";
-    container.appendChild(s);
-  }
-});
-</script>
-
-
 <script src="halloween.js"></script>
 
 
@@ -355,6 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
