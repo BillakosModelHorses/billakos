@@ -414,63 +414,8 @@ section {
 }
 
 
-/* --- Sparkle elements --- */
-.sparkle {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: radial-gradient(circle, #FFD700 35%, transparent 40%);
-  border-radius: 50%;
-  filter: drop-shadow(0 0 6px #FFD700);
-  animation: sparkleFloat 3s infinite ease-in-out;
-  opacity: 0.9;
-  z-index: 2;
-}
 
-/* Left and right sparkles */
-.sparkle-left {
-  top: 50%;
-  left: 5px;
-  transform: translateY(-50%);
-  animation-delay: 0s;
-}
 
-.sparkle-right {
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%);
-  animation-delay: 1.5s;
-}
-
-/* Floating animation */
-@keyframes sparkleFloat {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translateY(-10px) scale(1.4);
-    opacity: 1;
-  }
-}
-
-/* --- Responsive tweaks --- */
-@media (max-width: 600px) {
-  .subscribe-container {
-    max-width: 90%;
-    padding: 20px;
-  }
-  .sparkle {
-    width: 10px;
-    height: 10px;
-  }
-  .sparkle-left {
-    left: 2px;
-  }
-  .sparkle-right {
-    right: 2px;
-  }
-}
 
 
 
