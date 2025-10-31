@@ -1,5 +1,4 @@
 
-
 .header-with-image {
     display: flex;
     flex-direction: row;
@@ -509,6 +508,7 @@ section {
         filter: drop-shadow(0 0 4px gold);
     }
 }
+
 
 
 
