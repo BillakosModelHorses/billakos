@@ -212,8 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <br>
 
 <div class="sparkle-wrapper">
-    <div class="outside-sparkle sparkle-left">✨</div>
-    <div class="outside-sparkle sparkle-left">✨</div>
+    
     
     <div class="subscribe-container">
         
@@ -226,8 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>There won't be more than 2 mails a month. Probably 0-1 per month. If you want to unsubscribe, please <a href="mailto:billakosmodelhorses@gmail.com">email me.</a></p>
 </div>
 
-    <div class="outside-sparkle sparkle-left">✨</div>
-    <div class="outside-sparkle sparkle-left">✨</div>
+
 </div>
 
 
@@ -280,8 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <br>
 
 <div class="sparkle-wrapper">
-    <div class="outside-sparkle sparkle-left">✨</div>
-    <div class="outside-sparkle sparkle-left">✨</div>
+    
     
          <div class="comment-container">
 
@@ -305,8 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
     
-    <div class="outside-sparkle sparkle-left">✨</div>
-    <div class="outside-sparkle sparkle-left">✨</div>
+    
 </div>
 
         <br>
@@ -345,6 +341,47 @@ document.addEventListener('DOMContentLoaded', () => {
     
 </script>
 
+    <script>
+function createSparkles(wrapperSelector, count = 10) {
+    const wrapper = document.querySelector(wrapperSelector);
+    const box = wrapper.querySelector('div'); // assumes only one inner box
+    const boxHeight = box.offsetHeight;
+
+    for (let i = 0; i < count; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('outside-sparkle');
+        sparkle.textContent = '✨';
+        wrapper.appendChild(sparkle);
+
+        // Animate repeatedly
+        setInterval(() => {
+            // Random side (left or right)
+            const side = Math.random() < 0.5 ? 'left' : 'right';
+            sparkle.style[side] = '-20px';
+            sparkle.style[side === 'left' ? 'right' : 'left'] = 'auto';
+
+            // Random horizontal offset along the box height (vertical stays constant)
+            const top = Math.random() * (boxHeight - 20);
+            sparkle.style.top = `${top}px`;
+
+            // Fade in
+            sparkle.style.opacity = 1;
+
+            // Fade out after a short time
+            setTimeout(() => {
+                sparkle.style.opacity = 0;
+            }, 500 + Math.random() * 500);
+        }, 1000 + Math.random() * 2000);
+    }
+}
+
+// Initialize sparkles
+document.addEventListener('DOMContentLoaded', () => {
+    createSparkles('.sparkle-wrapper', 8); // 8 sparkles per box
+});
+</script>
+
+
 
 <script src="halloween.js"></script>
 
@@ -353,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
