@@ -338,14 +338,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
 </script>
 
-   <script>
+  
+
+<script>
 function createSparkles(wrapperSelector, count = 20) {
     const wrapper = document.querySelector(wrapperSelector);
     const box = wrapper.querySelector('div'); // inner box
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const boxRect = box.getBoundingClientRect();
+    const sparkleSize = 20; // approximate width/height of sparkle
     const wrapperWidth = wrapper.offsetWidth;
     const wrapperHeight = wrapper.offsetHeight;
+    const boxTop = box.offsetTop;
+    const boxHeight = box.offsetHeight;
+    const boxLeft = box.offsetLeft;
+    const boxWidth = box.offsetWidth;
 
     for (let i = 0; i < count; i++) {
         const sparkle = document.createElement('div');
@@ -360,22 +365,26 @@ function createSparkles(wrapperSelector, count = 20) {
 
             switch(area) {
                 case 0: // top
-                    top = Math.random() * (box.offsetTop); 
-                    left = Math.random() * wrapperWidth;
+                    top = Math.random() * boxTop;
+                    left = Math.random() * (wrapperWidth - sparkleSize);
                     break;
                 case 1: // bottom
-                    top = box.offsetTop + box.offsetHeight + Math.random() * (wrapperHeight - (box.offsetTop + box.offsetHeight));
-                    left = Math.random() * wrapperWidth;
+                    top = boxTop + boxHeight + Math.random() * (wrapperHeight - (boxTop + boxHeight) - sparkleSize);
+                    left = Math.random() * (wrapperWidth - sparkleSize);
                     break;
                 case 2: // left
-                    top = box.offsetTop + Math.random() * box.offsetHeight;
-                    left = Math.random() * (box.offsetLeft); 
+                    top = boxTop + Math.random() * (boxHeight - sparkleSize);
+                    left = Math.random() * boxLeft;
                     break;
                 case 3: // right
-                    top = box.offsetTop + Math.random() * box.offsetHeight;
-                    left = box.offsetLeft + box.offsetWidth + Math.random() * (wrapperWidth - (box.offsetLeft + box.offsetWidth));
+                    top = boxTop + Math.random() * (boxHeight - sparkleSize);
+                    left = boxLeft + boxWidth + Math.random() * (wrapperWidth - (boxLeft + boxWidth) - sparkleSize);
                     break;
             }
+
+            // Make sure sparkles stay inside wrapper boundaries
+            left = Math.max(0, Math.min(left, wrapperWidth - sparkleSize));
+            top = Math.max(0, Math.min(top, wrapperHeight - sparkleSize));
 
             sparkle.style.left = `${left}px`;
             sparkle.style.top = `${top}px`;
@@ -391,10 +400,9 @@ function createSparkles(wrapperSelector, count = 20) {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    createSparkles('.sparkle-wrapper', 20); // 20 sparkles per box
+    createSparkles('.sparkle-wrapper', 20);
 });
 </script>
-
 
 
 
@@ -407,6 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
