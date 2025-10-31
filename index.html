@@ -328,6 +328,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
 </script>
 
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".subscribe-container");
+  if (!container) return;
+
+  // Create 6 sparkles
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement("div");
+    s.classList.add("sparkle");
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = Math.random() * 100 + "%";
+    s.style.animationDelay = (Math.random() * 4) + "s";
+    s.style.animationDuration = (3 + Math.random() * 2) + "s";
+    container.appendChild(s);
+  }
+});
+</script>
+
+
 <script src="halloween.js"></script>
 
 
@@ -335,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
