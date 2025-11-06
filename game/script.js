@@ -43,6 +43,35 @@ const itemImages = [
   "https://i.postimg.cc/DfYDcvVG/F930-C266-993-E-4-CBD-9731-3766016-C8400.png?v=1730294222?text=K",
   "https://i.postimg.cc/904Lk937/FABB6-A5-C-8-DA3-46-F6-BB8-F-7-C82588-A47-E8.png?v=1563825640?v=1563826973?v=1730294222?text=L",
   "https://i.postimg.cc/WzKHpnm8/FADCD8-B3-F4-E9-4-CC3-AB19-BD85934-A6-E84.png?v=1563825640?v=1563826973?v=1730294222?text=M",
+  "https://i.postimg.cc/fbKqSZjJ/4087-C893-8-D2-D-4197-BADD-392-F80-C0-CEF4.png?v=1731691552?text=A",
+  "https://i.postimg.cc/W3NK5tbG/4-B1107-CA-21-CA-4-B9-E-8647-74967-C040-F14.png?v=1730294222?text=B",
+  "https://i.postimg.cc/fLqH5KPs/6-C4-DE37-F-8047-4-D83-A111-1-CC8-C558-BC1-C.png?v=1563825462?v=1722012553?v=1730294222?text=C",
+  "https://i.postimg.cc/BQrVdmnQ/7-F1999-A8-E275-4-DF2-A29-A-AE74663-D0-B78.png?v=1722263282?text=D",
+  "https://i.postimg.cc/J4DF6fm2/8-C6600-A9-B3-C4-4-E8-A-9-A15-6-D00-C6-A7-CE37.png?v=1563826973?v=1730294222?text=E",
+  "https://i.postimg.cc/7hbRyczb/AA96080-B-BD6-C-45-D5-A28-E-277-E25-DE0-E6-E.png?v=1563825640?v=1563826973?v=1730294222?text=F",
+
+  
+
+  "https://i.postimg.cc/g02Gj4T5/712451-Tabitha-E2-80-93-FS-Halloween-silo-r2-600x600.webp?v=1731691552?text=O",
+  "https://i.postimg.cc/xd198g44/712481-Centerpiece-R-600x600.webp?text=P",
+  "https://i.postimg.cc/3wx3N9cq/712482-Oklahoma-Rose-R-600x600.webp?v=1563825462?v=1722012553?v=1730294222?text=Q",
+  "https://i.postimg.cc/Pq5dJKR9/712487-Biscuits-Gravy-together-600x600.webp?v=1722263282?text=R",
+  "https://i.postimg.cc/DzpnXs9B/712513-Slither-right-600x600.webp?v=1730294222?text=S",
+  "https://i.postimg.cc/g0tmZRCg/712535-Faded-Love-R-600x600.webp?v=1563825640?v=1563826973?v=1730294222?text=T",
+  "https://i.postimg.cc/wB4gmJCW/712536-Redbud-R-600x600.webp?v=1563825640?v=1563826973?v=1730294222?text=U",
+
+"https://i.postimg.cc/5tKbCvhG/B-EV-10472-Salud-Black-L-1024x1024.webp?v=1731691552?text=O",
+  "https://i.postimg.cc/DzpnXs9t/B-EV-10472-Salud-Grey-L-1024x1024.webp?text=P",
+  "https://i.postimg.cc/Xv14CFRP/B-EV-10516-Legacy-L-1024x1024.webp?v=1563825462?v=1722012553?v=1730294222?text=Q",
+  "https://i.postimg.cc/d0NwydbN/B-EV-10517-Tamarkuz-R-1024x1024.webp?v=1722263282?text=R",
+  "https://i.postimg.cc/7Ltw20vr/B-EV-10722-Corgi-Hill-Flinka-064-1024x1024.webp?v=1730294222?text=S",
+  "https://i.postimg.cc/pdcRFzNH/ned2-480x480.webp?v=1563825640?v=1563826973?v=1730294222?text=T",
+  "https://i.postimg.cc/d0NwyrMw/preview-1024x1024.webp?v=1563825640?v=1563826973?v=1730294222?text=U",
+
+"https://i.postimg.cc/3wfYvmM7/rosanna1-1024x1024.webp?v=1563825640?v=1563826973?v=1730294222?text=U",
+"https://i.postimg.cc/mrpBHCxZ/wimpy-R-FINAL-600x600.webp?v=1563825640?v=1563826973?v=1730294222?text=U",
+
+  
 ];
 
 // Controls
