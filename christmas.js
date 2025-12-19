@@ -33,36 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  /* =========================
-     🎅 2. Floating Christmas Images
-     ========================= */
-  const images = [
-    "santa.png",
-    "tree.png",
-    "gift.png",
-    "snowman.png"
-  ];
+  
 
+  /* =========================
+     🎅 2. Floating Christmas Emojis
+     ========================= */
+  const emojis = ["🎄", "🎅", "🎁", "⛄", "🦌", "⭐"];
   const count = isMobile ? 6 : 12;
 
   for (let i = 0; i < count; i++) {
-    const img = document.createElement("img");
-    img.src = images[Math.floor(Math.random() * images.length)];
-    img.style.position = "fixed";
-    img.style.left = Math.random() * 100 + "vw";
-    img.style.top = Math.random() * 100 + "vh";
-    img.style.width = Math.random() * 50 + 40 + "px";
-    img.style.opacity = 0.95;
-    img.style.pointerEvents = "none";
-    img.style.zIndex = 9999;
-    img.style.transition =
+    const el = document.createElement("div");
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.position = "fixed";
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.top = Math.random() * 100 + "vh";
+    el.style.fontSize = Math.random() * 28 + 24 + "px";
+    el.style.opacity = 0.95;
+    el.style.pointerEvents = "none";
+    el.style.zIndex = 9999;
+    el.style.transition =
       "transform 12s ease-in-out, top 12s ease-in-out, left 12s ease-in-out";
-    document.body.appendChild(img);
+    document.body.appendChild(el);
 
     setInterval(() => {
-      img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
-      img.style.left = Math.random() * 100 + "vw";
-      img.style.top = Math.random() * 100 + "vh";
+      el.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.top = Math.random() * 100 + "vh";
     }, 12000);
   }
 
@@ -118,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     const popup = document.createElement("div");
     popup.innerHTML = `
-      <h1>🎄 Merry Christmas! 🎅</h1>
+      <h1>🎄 Happy Holidays :) 🎁</h1>
       <p>Wishing you warmth, joy, and happiness.</p>
       <button>Close</button>
     `;
