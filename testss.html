@@ -2319,42 +2319,73 @@ backToTopButton.addEventListener("click", () => {
 <script>
 const postsPerPage = 10;
 let currentPage = 1;
-let posts = Array.from(document.getElementsByClassName("blog-post"));
 
-// Make sure newest posts appear first
-posts.reverse();
+// DO NOT reverse — your newest posts are already first
+const allPosts = Array.from(document.getElementsByClassName("blog-post"));
+let filteredPosts = [...allPosts];
 
-const totalPages = Math.ceil(posts.length / postsPerPage);
-
-function showPage(page) {
+function renderPage(page) {
     currentPage = page;
 
-    posts.forEach((post, index) => {
-        const start = (currentPage - 1) * postsPerPage;
-        const end = start + postsPerPage;
+    // Hide all posts
+    allPosts.forEach(post => post.style.display = "none");
 
-        post.style.display = (index >= start && index < end) ? "block" : "none";
+    const start = (currentPage - 1) * postsPerPage;
+    const end = start + postsPerPage;
+
+    filteredPosts.slice(start, end).forEach(post => {
+        post.style.display = "block";
     });
 
-    document.getElementById("pageIndicator").innerText =
-        `Page ${currentPage} of ${totalPages}`;
+    renderPagination();
 }
 
-function nextPage() {
-    if (currentPage < totalPages) {
-        showPage(currentPage + 1);
+function renderPagination() {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.innerText = i;
+        btn.onclick = () => renderPage(i);
+
+        if (i === currentPage) {
+            btn.style.backgroundColor = "#276C8C";
+        }
+
+        pagination.appendChild(btn);
     }
 }
 
-function prevPage() {
-    if (currentPage > 1) {
-        showPage(currentPage - 1);
+// SEARCH WITH PAGINATION
+function searchPosts() {
+    const query = document.getElementById("search-bar").value.trim().toLowerCase();
+
+    if (query === "") {
+        filteredPosts = [...allPosts];
+    } else {
+        filteredPosts = allPosts.filter(post =>
+            post.innerText.toLowerCase().includes(query)
+        );
+    }
+
+    renderPage(1);
+}
+
+// ENTER KEY SUPPORT
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        searchPosts();
     }
 }
 
-// Initialize first page
-showPage(1);
+// INITIAL LOAD
+renderPage(1);
 </script>
+
    
 
 
