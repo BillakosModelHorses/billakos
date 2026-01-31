@@ -2366,63 +2366,64 @@ document.addEventListener("DOMContentLoaded", () => {
             .scrollIntoView({ behavior: "smooth" });
     }
 
-    function createPagination(container) {
-        container.innerHTML = "";
+   
 
-        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-        if (totalPages <= 1) return;
+   <script>
+function createPagination(container) {
+    container.innerHTML = "";
 
-        // PREVIOUS
-        const prev = document.createElement("button");
-        prev.textContent = "« Prev";
-        prev.disabled = currentPage === 1;
-        prev.onclick = () => renderPage(currentPage - 1);
-        container.appendChild(prev);
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+    if (totalPages <= 1) return;
 
-        // PAGE NUMBERS
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.textContent = i;
-            btn.classList.toggle("active", i === currentPage);
-            btn.onclick = () => renderPage(i);
-            container.appendChild(btn);
-        }
+    const maxVisible = 3;   // pages at start & end
+    const ellipsis = "...";
 
-        // NEXT
-        const next = document.createElement("button");
-        next.textContent = "Next »";
-        next.disabled = currentPage === totalPages;
-        next.onclick = () => renderPage(currentPage + 1);
-        container.appendChild(next);
+    // PREVIOUS
+    const prev = document.createElement("button");
+    prev.textContent = "« Prev";
+    prev.disabled = currentPage === 1;
+    prev.onclick = () => renderPage(currentPage - 1);
+    container.appendChild(prev);
+
+    function addPage(page) {
+        const btn = document.createElement("button");
+        btn.textContent = page;
+        btn.classList.toggle("active", page === currentPage);
+        btn.onclick = () => renderPage(page);
+        container.appendChild(btn);
     }
 
-    function renderPagination() {
-        createPagination(topPagination);
-        createPagination(bottomPagination);
+    function addEllipsis() {
+        const span = document.createElement("span");
+        span.textContent = ellipsis;
+        span.style.margin = "0 8px";
+        container.appendChild(span);
     }
 
-    // SEARCH (WITH PAGINATION)
-    window.searchPosts = function () {
-        const query = document.getElementById("search-bar").value.trim().toLowerCase();
+    // START PAGES
+    for (let i = 1; i <= Math.min(maxVisible, totalPages); i++) {
+        addPage(i);
+    }
 
-        filteredPosts = query === ""
-            ? [...allPosts]
-            : allPosts.filter(post =>
-                post.innerText.toLowerCase().includes(query)
-            );
+    // MIDDLE ELLIPSIS
+    if (totalPages > maxVisible * 2 && currentPage > maxVisible + 1) {
+        addEllipsis();
+    }
 
-        renderPage(1);
-    };
+    // END PAGES
+    for (let i = Math.max(totalPages - maxVisible + 1, maxVisible + 1); i <= totalPages; i++) {
+        addPage(i);
+    }
 
-    window.handleKeyPress = function (event) {
-        if (event.key === "Enter") {
-            searchPosts();
-        }
-    };
-
-    renderPage(1);
-});
+    // NEXT
+    const next = document.createElement("button");
+    next.textContent = "Next »";
+    next.disabled = currentPage === totalPages;
+    next.onclick = () => renderPage(currentPage + 1);
+    container.appendChild(next);
+}
 </script>
+
 
 
    
