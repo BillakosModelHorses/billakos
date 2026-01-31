@@ -2335,7 +2335,44 @@ backToTopButton.addEventListener("click", () => {
 </script>
 
 
-   function createPagination(container) {
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const postsPerPage = 10;
+    let currentPage = 1;
+
+    const allPosts = Array.from(document.getElementsByClassName("blog-post"));
+    let filteredPosts = [...allPosts];
+
+    const topPagination = document.getElementById("pagination-top");
+    const bottomPagination = document.getElementById("pagination-bottom");
+
+    function renderPage(page) {
+        currentPage = page;
+
+        // Hide all posts
+        allPosts.forEach(post => post.style.display = "none");
+
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
+
+        filteredPosts.slice(start, end).forEach(post => {
+            post.style.display = "block";
+        });
+
+        renderPagination();
+
+        // Scroll to top of blog
+        document.querySelector(".blog-container")
+            .scrollIntoView({ behavior: "smooth" });
+    }
+
+    function renderPagination() {
+        createPagination(topPagination);
+        createPagination(bottomPagination);
+    }
+
+    function createPagination(container) {
     container.innerHTML = "";
 
     const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
@@ -2396,6 +2433,31 @@ backToTopButton.addEventListener("click", () => {
     next.onclick = () => renderPage(currentPage + 1);
     container.appendChild(next);
 }
+
+    // SEARCH (with pagination)
+    window.searchPosts = function () {
+        const query = document.getElementById("search-bar").value.trim().toLowerCase();
+
+        filteredPosts = query === ""
+            ? [...allPosts]
+            : allPosts.filter(post =>
+                post.innerText.toLowerCase().includes(query)
+            );
+
+        renderPage(1);
+    };
+
+    window.handleKeyPress = function (event) {
+        if (event.key === "Enter") {
+            searchPosts();
+        }
+    };
+
+    // INITIAL LOAD
+    renderPage(1);
+});
+</script>
+
 
 
    
