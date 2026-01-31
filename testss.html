@@ -2335,7 +2335,7 @@ backToTopButton.addEventListener("click", () => {
 </script>
 
 
-   <script>
+  <script>
 document.addEventListener("DOMContentLoaded", () => {
 
     const postsPerPage = 10;
@@ -2347,7 +2347,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const topPagination = document.getElementById("pagination-top");
     const bottomPagination = document.getElementById("pagination-bottom");
 
-    function renderPage(page) {
+    // renderPage now takes a scroll parameter
+    function renderPage(page, scroll = true) {
         currentPage = page;
 
         // Hide all posts
@@ -2362,9 +2363,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderPagination();
 
-        // Scroll to top of blog
-        document.querySelector(".blog-container")
-            .scrollIntoView({ behavior: "smooth" });
+        // Scroll to top of blog only if scroll = true
+        if (scroll) {
+            document.querySelector(".blog-container")
+                .scrollIntoView({ behavior: "smooth" });
+        }
     }
 
     function renderPagination() {
@@ -2373,66 +2376,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createPagination(container) {
-    container.innerHTML = "";
+        container.innerHTML = "";
 
-    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-    if (totalPages <= 1) return;
+        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+        if (totalPages <= 1) return;
 
-    // PREVIOUS
-    const prev = document.createElement("button");
-    prev.textContent = "« Prev";
-    prev.disabled = currentPage === 1;
-    prev.onclick = () => renderPage(currentPage - 1);
-    container.appendChild(prev);
+        // PREVIOUS
+        const prev = document.createElement("button");
+        prev.textContent = "« Prev";
+        prev.disabled = currentPage === 1;
+        prev.onclick = () => renderPage(currentPage - 1, true);
+        container.appendChild(prev);
 
-    function addPage(page) {
-        const btn = document.createElement("button");
-        btn.textContent = page;
-        btn.classList.toggle("active", page === currentPage);
-        btn.onclick = () => renderPage(page);
-        container.appendChild(btn);
+        function addPage(page) {
+            const btn = document.createElement("button");
+            btn.textContent = page;
+            btn.classList.toggle("active", page === currentPage);
+            btn.onclick = () => renderPage(page, true);
+            container.appendChild(btn);
+        }
+
+        function addEllipsis() {
+            const span = document.createElement("span");
+            span.textContent = "...";
+            span.style.margin = "0 8px";
+            container.appendChild(span);
+        }
+
+        // ALWAYS SHOW FIRST PAGE
+        addPage(1);
+
+        // LEFT ELLIPSIS
+        if (currentPage > 2) {
+            addEllipsis();
+        }
+
+        // SLIDING WINDOW (current, next two)
+        const start = Math.max(2, currentPage);
+        const end = Math.min(totalPages - 1, currentPage + 2);
+
+        for (let i = start; i <= end; i++) {
+            addPage(i);
+        }
+
+        // RIGHT ELLIPSIS
+        if (currentPage + 2 < totalPages - 1) {
+            addEllipsis();
+        }
+
+        // ALWAYS SHOW LAST PAGE
+        if (totalPages > 1) {
+            addPage(totalPages);
+        }
+
+        // NEXT
+        const next = document.createElement("button");
+        next.textContent = "Next »";
+        next.disabled = currentPage === totalPages;
+        next.onclick = () => renderPage(currentPage + 1, true);
+        container.appendChild(next);
     }
-
-    function addEllipsis() {
-        const span = document.createElement("span");
-        span.textContent = "...";
-        span.style.margin = "0 8px";
-        container.appendChild(span);
-    }
-
-    // ALWAYS SHOW FIRST PAGE
-    addPage(1);
-
-    // LEFT ELLIPSIS
-    if (currentPage > 2) {
-        addEllipsis();
-    }
-
-    // SLIDING WINDOW (current, next two)
-    const start = Math.max(2, currentPage);
-    const end = Math.min(totalPages - 1, currentPage + 2);
-
-    for (let i = start; i <= end; i++) {
-        addPage(i);
-    }
-
-    // RIGHT ELLIPSIS
-    if (currentPage + 2 < totalPages - 1) {
-        addEllipsis();
-    }
-
-    // ALWAYS SHOW LAST PAGE
-    if (totalPages > 1) {
-        addPage(totalPages);
-    }
-
-    // NEXT
-    const next = document.createElement("button");
-    next.textContent = "Next »";
-    next.disabled = currentPage === totalPages;
-    next.onclick = () => renderPage(currentPage + 1);
-    container.appendChild(next);
-}
 
     // SEARCH (with pagination)
     window.searchPosts = function () {
@@ -2444,7 +2447,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 post.innerText.toLowerCase().includes(query)
             );
 
-        renderPage(1);
+        renderPage(1, true); // scroll to posts when search is used
     };
 
     window.handleKeyPress = function (event) {
@@ -2453,10 +2456,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // INITIAL LOAD
-    renderPage(1);
+    // INITIAL LOAD - do NOT scroll
+    renderPage(1, false);
 });
 </script>
+
 
 
 
