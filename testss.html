@@ -19,10 +19,16 @@
    
   <style>
 
-#pagination button {
-    margin: 0 10px;
-    padding: 8px 16px;
+     .pagination {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.pagination button {
+    margin: 4px;
+    padding: 8px 14px;
     font-family: 'Oswald', Arial, sans-serif;
+    font-size: 15px;
     background-color: #2c789c;
     color: white;
     border: none;
@@ -30,14 +36,21 @@
     cursor: pointer;
 }
 
-#pagination button:hover {
+.pagination button:hover {
     background-color: #276C8C;
 }
 
-#pageIndicator {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 16px;
+.pagination button.active {
+    background-color: #1f5c78;
 }
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+
+
 
 
 #backToTop {
@@ -112,6 +125,10 @@ font-family: 'Oswald', Arial, sans-serif;
     <button onclick="searchPosts()">Search</button>
    
 </div>
+
+
+   <div id="pagination-top" class="pagination"></div>
+
    
     <div class="blog-container">
 
@@ -2262,7 +2279,8 @@ font-family: 'Oswald', Arial, sans-serif;
         </div> -->
 </div>
  
-<div id="pagination" style="text-align:center; margin: 30px 0;"></div>
+<div id="pagination-bottom" class="pagination"></div>
+
 
 
 <br>
@@ -2317,74 +2335,95 @@ backToTopButton.addEventListener("click", () => {
 </script>
 
 <script>
-const postsPerPage = 10;
-let currentPage = 1;
+document.addEventListener("DOMContentLoaded", () => {
 
-// DO NOT reverse — your newest posts are already first
-const allPosts = Array.from(document.getElementsByClassName("blog-post"));
-let filteredPosts = [...allPosts];
+    const postsPerPage = 10;
+    let currentPage = 1;
 
-function renderPage(page) {
-    currentPage = page;
+    const allPosts = Array.from(document.getElementsByClassName("blog-post"));
+    let filteredPosts = [...allPosts];
 
-    // Hide all posts
-    allPosts.forEach(post => post.style.display = "none");
+    const topPagination = document.getElementById("pagination-top");
+    const bottomPagination = document.getElementById("pagination-bottom");
 
-    const start = (currentPage - 1) * postsPerPage;
-    const end = start + postsPerPage;
+    function renderPage(page) {
+        currentPage = page;
 
-    filteredPosts.slice(start, end).forEach(post => {
-        post.style.display = "block";
-    });
+        // Hide all posts
+        allPosts.forEach(post => post.style.display = "none");
 
-    renderPagination();
-}
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
 
-function renderPagination() {
-    const pagination = document.getElementById("pagination");
-    pagination.innerHTML = "";
+        filteredPosts.slice(start, end).forEach(post => {
+            post.style.display = "block";
+        });
 
-    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-    if (totalPages <= 1) return;
+        renderPagination();
 
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.innerText = i;
-        btn.onclick = () => renderPage(i);
+        // Scroll to top of blog smoothly
+        document.querySelector(".blog-container")
+            .scrollIntoView({ behavior: "smooth" });
+    }
 
-        if (i === currentPage) {
-            btn.style.backgroundColor = "#276C8C";
+    function createPagination(container) {
+        container.innerHTML = "";
+
+        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+        if (totalPages <= 1) return;
+
+        // PREVIOUS
+        const prev = document.createElement("button");
+        prev.textContent = "« Prev";
+        prev.disabled = currentPage === 1;
+        prev.onclick = () => renderPage(currentPage - 1);
+        container.appendChild(prev);
+
+        // PAGE NUMBERS
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.classList.toggle("active", i === currentPage);
+            btn.onclick = () => renderPage(i);
+            container.appendChild(btn);
         }
 
-        pagination.appendChild(btn);
+        // NEXT
+        const next = document.createElement("button");
+        next.textContent = "Next »";
+        next.disabled = currentPage === totalPages;
+        next.onclick = () => renderPage(currentPage + 1);
+        container.appendChild(next);
     }
-}
 
-// SEARCH WITH PAGINATION
-function searchPosts() {
-    const query = document.getElementById("search-bar").value.trim().toLowerCase();
-
-    if (query === "") {
-        filteredPosts = [...allPosts];
-    } else {
-        filteredPosts = allPosts.filter(post =>
-            post.innerText.toLowerCase().includes(query)
-        );
+    function renderPagination() {
+        createPagination(topPagination);
+        createPagination(bottomPagination);
     }
+
+    // SEARCH (WITH PAGINATION)
+    window.searchPosts = function () {
+        const query = document.getElementById("search-bar").value.trim().toLowerCase();
+
+        filteredPosts = query === ""
+            ? [...allPosts]
+            : allPosts.filter(post =>
+                post.innerText.toLowerCase().includes(query)
+            );
+
+        renderPage(1);
+    };
+
+    window.handleKeyPress = function (event) {
+        if (event.key === "Enter") {
+            searchPosts();
+        }
+    };
 
     renderPage(1);
-}
-
-// ENTER KEY SUPPORT
-function handleKeyPress(event) {
-    if (event.key === "Enter") {
-        searchPosts();
-    }
-}
-
-// INITIAL LOAD
-renderPage(1);
+});
 </script>
+
 
    
 
