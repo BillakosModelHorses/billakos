@@ -8,26 +8,34 @@
 
 <h1>Recovery Tracker</h1>
 
-<div>
-  <h2>Timer</h2>
-  <div id="timer">Loading...</div>
-  <button id="relapseBtn">I Relapsed</button>
+<div class="container">
+
+  <div class="box">
+    <h2>Timer</h2>
+    <div id="timer">Loading...</div>
+    <button id="relapseBtn">I Relapsed</button>
+  </div>
+
+  <div class="box">
+    <h2>Streak</h2>
+    Current: <span id="currentStreak">0</span><br>
+    Longest: <span id="longestStreak">0</span>
+  </div>
+
+  <div class="box">
+    <h2>Write Note</h2>
+    <input type="date" id="dateInput">
+    <textarea id="noteInput"></textarea>
+    <button id="saveNoteBtn">Save Note</button>
+  </div>
+
+  <div class="box">
+    <h2>Your Notes</h2>
+    <div id="notesList"></div>
+  </div>
+
 </div>
 
-<div>
-  <h2>Streak</h2>
-  Current: <span id="currentStreak">0</span><br>
-  Longest: <span id="longestStreak">0</span>
-</div>
-
-<div>
-  <h2>Notes</h2>
-  <input type="date" id="dateInput">
-  <br>
-  <textarea id="noteInput"></textarea>
-  <br>
-  <button id="saveNoteBtn">Save Note</button>
-</div>
 
 <script type="module" src="app.js"></script>
 
