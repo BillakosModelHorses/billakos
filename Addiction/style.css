@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #0f172a;
   color: white;
   margin: 0;
@@ -34,6 +34,12 @@ h1 {
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
+/* Box titles */
+.box h2 {
+  margin-bottom: 10px;
+  color: #7dd3fc;
+}
+
 /* Timer */
 #timer {
   font-size: 22px;
@@ -42,11 +48,19 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* Labels */
+label {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #38bdf8;
+}
+
 /* Inputs */
 input, textarea {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
   margin-bottom: 10px;
   border-radius: 8px;
   border: none;
@@ -69,7 +83,7 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Relapse button */
+/* Relapse button red */
 #relapseBtn {
   background: #ef4444;
   color: white;
@@ -103,4 +117,13 @@ button:active {
     font-size: 20px;
   }
 
+  label {
+    font-size: 13px;
+  }
+
+  textarea {
+    height: 80px;
+  }
+
 }
+
