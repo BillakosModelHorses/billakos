@@ -10,26 +10,28 @@
 
 <div class="counter">
   <h2>Time Clean</h2>
-  <div id="timer">
-    0d 0h 0m 0s
-  </div>
-
+  <div id="timer">Loading...</div>
   <button onclick="resetTimer()">I Relapsed</button>
 </div>
 
 <div class="streaks">
   <h2>Streak Stats</h2>
-  <p>Current Streak: <span id="currentStreak">0</span></p>
-  <p>Longest Streak: <span id="longestStreak">0</span></p>
+  <p>Current Streak: <span id="currentStreak">0</span> days</p>
+  <p>Longest Streak: <span id="longestStreak">0</span> days</p>
 </div>
 
 <div class="calendar">
   <h2>Calendar Notes</h2>
+
   <input type="date" id="dateInput">
-  <textarea id="noteInput"></textarea>
+
+  <textarea id="noteInput" placeholder="Write how you feel..."></textarea>
+
   <button onclick="saveNote()">Save Note</button>
+
 </div>
 
+<script type="module" src="firebase.js"></script>
 <script type="module" src="app.js"></script>
 
 </body>
