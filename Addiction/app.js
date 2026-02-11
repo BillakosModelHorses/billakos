@@ -1,6 +1,3 @@
-// app.js
-
-// Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 import {
@@ -11,81 +8,66 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 
-// 🔥 YOUR FIREBASE CONFIG
+// PUT YOUR REAL FIREBASE CONFIG HERE
 const firebaseConfig = {
   apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
           authDomain: "billakosmodelhorses.firebaseapp.com",
           projectId: "billakosmodelhorses",
-          storageBucket: "billakosmodelhorses.appspot.com",
-          messagingSenderId: "988607299628",
-          appId: "1:988607299628:web:b7c2139b095a0afba8d189",
-          measurementId: "G-RWHNVMHN2P"
 };
 
 
-// Initialize Firebase
+// init firebase
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
 
-// Global variable
 let lastRelapseTime = Date.now();
 
 
-// LOAD DATA FROM FIREBASE
+// LOAD DATA
 async function loadData() {
 
-  try {
+  console.log("Loading data...");
 
-    const ref = doc(db, "tracker", "main");
+  const ref = doc(db, "tracker", "main");
 
-    const snap = await getDoc(ref);
+  const snap = await getDoc(ref);
 
-    if (snap.exists()) {
+  if (snap.exists()) {
 
-      const data = snap.data();
+    const data = snap.data();
 
-      lastRelapseTime = data.lastRelapse || Date.now();
+    lastRelapseTime = data.lastRelapse;
 
-      document.getElementById("longestStreak").textContent =
-        data.longestStreak || 0;
+    document.getElementById("longestStreak").textContent =
+      data.longestStreak || 0;
 
-    } else {
+  } else {
 
-      await setDoc(ref, {
-        lastRelapse: Date.now(),
-        longestStreak: 0
-      });
+    await setDoc(ref, {
 
-      lastRelapseTime = Date.now();
+      lastRelapse: Date.now(),
+      longestStreak: 0
 
-    }
-
-  } catch (error) {
-
-    console.error("Error loading data:", error);
+    });
 
   }
 
 }
 
 
-// TIMER FUNCTION
+// TIMER
 function startTimer() {
 
   setInterval(() => {
 
-    const now = Date.now();
-
-    const diff = now - lastRelapseTime;
+    const diff = Date.now() - lastRelapseTime;
 
     const days = Math.floor(diff / 86400000);
-    const hours = Math.floor(diff / 3600000) % 24;
-    const minutes = Math.floor(diff / 60000) % 60;
-    const seconds = Math.floor(diff / 1000) % 60;
 
     document.getElementById("timer").textContent =
-      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      days + " days";
 
     document.getElementById("currentStreak").textContent =
       days;
@@ -95,133 +77,92 @@ function startTimer() {
 }
 
 
-// RELAPSE FUNCTION
+// RELAPSE BUTTON
 async function relapse() {
 
-  try {
+  console.log("BUTTON CLICKED");
 
-    console.log("Relapse button clicked");
+  const ref = doc(db, "tracker", "main");
 
-    const ref = doc(db, "tracker", "main");
+  const snap = await getDoc(ref);
 
-    const snap = await getDoc(ref);
+  const now = Date.now();
 
-    const now = Date.now();
+  let longest = 0;
 
-    let longest = 0;
-    let last = now;
+  if (snap.exists()) {
 
-    if (snap.exists()) {
+    const data = snap.data();
 
-      const data = snap.data();
+    const days =
+      Math.floor((now - data.lastRelapse) / 86400000);
 
-      last = data.lastRelapse || now;
+    longest = data.longestStreak || 0;
 
-      longest = data.longestStreak || 0;
-
-      const days =
-        Math.floor((now - last) / 86400000);
-
-      if (days > longest) {
-
-        longest = days;
-
-      }
-
-    }
-
-    // Save to Firebase
-    await setDoc(ref, {
-      lastRelapse: now,
-      longestStreak: longest
-    });
-
-    // Update local variable
-    lastRelapseTime = now;
-
-    // Update UI
-    document.getElementById("longestStreak").textContent =
-      longest;
-
-    document.getElementById("currentStreak").textContent =
-      0;
-
-    console.log("Relapse saved");
-
-  } catch (error) {
-
-    console.error("Error saving relapse:", error);
+    if (days > longest)
+      longest = days;
 
   }
+
+  await setDoc(ref, {
+
+    lastRelapse: now,
+    longestStreak: longest
+
+  });
+
+  lastRelapseTime = now;
+
+  document.getElementById("longestStreak").textContent =
+    longest;
 
 }
 
 
-// SAVE NOTE FUNCTION
+// SAVE NOTE BUTTON
 async function saveNote() {
 
-  try {
+  console.log("SAVE CLICKED");
 
-    const date =
-      document.getElementById("dateInput").value;
+  const date =
+    document.getElementById("dateInput").value;
 
-    const note =
-      document.getElementById("noteInput").value;
+  const note =
+    document.getElementById("noteInput").value;
 
-    if (!date) {
+  if (!date) {
 
-      alert("Please select a date");
-      return;
+    alert("Select date");
 
-    }
-
-    await setDoc(doc(db, "notes", date), {
-
-      text: note,
-      timestamp: Date.now()
-
-    });
-
-    alert("Note saved successfully");
-
-  } catch (error) {
-
-    console.error("Error saving note:", error);
+    return;
 
   }
+
+  await setDoc(doc(db, "notes", date), {
+
+    text: note
+
+  });
+
+  alert("Saved");
 
 }
 
 
 // CONNECT BUTTONS
-function setupButtons() {
+document
+  .getElementById("relapseBtn")
+  .addEventListener("click", relapse);
 
-  const relapseBtn =
-    document.getElementById("relapseBtn");
+document
+  .getElementById("saveNoteBtn")
+  .addEventListener("click", saveNote);
 
-  const saveNoteBtn =
-    document.getElementById("saveNoteBtn");
-
-  relapseBtn.addEventListener("click", relapse);
-
-  saveNoteBtn.addEventListener("click", saveNote);
-
-}
-
-
-// INITIALIZE APP
-async function init() {
-
-  await loadData();
-
-  setupButtons();
-
-  startTimer();
-
-  console.log("App started");
-
-}
 
 
 // START
-init();
+await loadData();
+
+startTimer();
+
+console.log("APP STARTED");
