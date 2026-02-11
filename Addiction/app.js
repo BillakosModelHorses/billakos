@@ -1,14 +1,21 @@
+// app.js
+
+// Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 import {
   getFirestore,
   doc,
   setDoc,
-  getDoc
+  getDoc,
+  collection,
+  getDocs,
+  query,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 
-// PUT YOUR REAL FIREBASE CONFIG HERE
+// YOUR FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
           authDomain: "billakosmodelhorses.firebaseapp.com",
@@ -16,41 +23,45 @@ const firebaseConfig = {
 };
 
 
-// init firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
 
+// Global variable
 let lastRelapseTime = Date.now();
 
 
-// LOAD DATA
+// LOAD TRACKER DATA
 async function loadData() {
 
-  console.log("Loading data...");
+  try {
 
-  const ref = doc(db, "tracker", "main");
+    const ref = doc(db, "tracker", "main");
 
-  const snap = await getDoc(ref);
+    const snap = await getDoc(ref);
 
-  if (snap.exists()) {
+    if (snap.exists()) {
 
-    const data = snap.data();
+      const data = snap.data();
 
-    lastRelapseTime = data.lastRelapse;
+      lastRelapseTime = data.lastRelapse || Date.now();
 
-    document.getElementById("longestStreak").textContent =
-      data.longestStreak || 0;
+      document.getElementById("longestStreak").textContent =
+        data.longestStreak || 0;
 
-  } else {
+    } else {
 
-    await setDoc(ref, {
+      await setDoc(ref, {
+        lastRelapse: Date.now(),
+        longestStreak: 0
+      });
 
-      lastRelapse: Date.now(),
-      longestStreak: 0
+    }
 
-    });
+  } catch (error) {
+
+    console.error("Error loading tracker:", error);
 
   }
 
@@ -62,12 +73,17 @@ function startTimer() {
 
   setInterval(() => {
 
-    const diff = Date.now() - lastRelapseTime;
+    const now = Date.now();
+
+    const diff = now - lastRelapseTime;
 
     const days = Math.floor(diff / 86400000);
+    const hours = Math.floor(diff / 3600000) % 24;
+    const minutes = Math.floor(diff / 60000) % 60;
+    const seconds = Math.floor(diff / 1000) % 60;
 
     document.getElementById("timer").textContent =
-      days + " days";
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
     document.getElementById("currentStreak").textContent =
       days;
@@ -80,89 +96,167 @@ function startTimer() {
 // RELAPSE BUTTON
 async function relapse() {
 
-  console.log("BUTTON CLICKED");
+  try {
 
-  const ref = doc(db, "tracker", "main");
+    const ref = doc(db, "tracker", "main");
 
-  const snap = await getDoc(ref);
+    const snap = await getDoc(ref);
 
-  const now = Date.now();
+    const now = Date.now();
 
-  let longest = 0;
+    let longest = 0;
+    let last = now;
 
-  if (snap.exists()) {
+    if (snap.exists()) {
 
-    const data = snap.data();
+      const data = snap.data();
 
-    const days =
-      Math.floor((now - data.lastRelapse) / 86400000);
+      last = data.lastRelapse || now;
 
-    longest = data.longestStreak || 0;
+      longest = data.longestStreak || 0;
 
-    if (days > longest)
-      longest = days;
+      const days =
+        Math.floor((now - last) / 86400000);
+
+      if (days > longest)
+        longest = days;
+
+    }
+
+    await setDoc(ref, {
+      lastRelapse: now,
+      longestStreak: longest
+    });
+
+    lastRelapseTime = now;
+
+    document.getElementById("longestStreak").textContent =
+      longest;
+
+    document.getElementById("currentStreak").textContent =
+      0;
+
+  } catch (error) {
+
+    console.error("Error saving relapse:", error);
 
   }
-
-  await setDoc(ref, {
-
-    lastRelapse: now,
-    longestStreak: longest
-
-  });
-
-  lastRelapseTime = now;
-
-  document.getElementById("longestStreak").textContent =
-    longest;
 
 }
 
 
-// SAVE NOTE BUTTON
+// SAVE NOTE
 async function saveNote() {
 
-  console.log("SAVE CLICKED");
+  try {
 
-  const date =
-    document.getElementById("dateInput").value;
+    const date =
+      document.getElementById("dateInput").value;
 
-  const note =
-    document.getElementById("noteInput").value;
+    const text =
+      document.getElementById("noteInput").value;
 
-  if (!date) {
+    if (!date) {
 
-    alert("Select date");
+      alert("Please select a date");
+      return;
 
-    return;
+    }
+
+    await setDoc(doc(db, "notes", date), {
+
+      text: text,
+      timestamp: Date.now()
+
+    });
+
+    document.getElementById("noteInput").value = "";
+
+    await loadNotes();
+
+    alert("Note saved");
+
+  } catch (error) {
+
+    console.error("Error saving note:", error);
 
   }
 
-  await setDoc(doc(db, "notes", date), {
+}
 
-    text: note
 
-  });
+// LOAD NOTES
+async function loadNotes() {
 
-  alert("Saved");
+  try {
+
+    const notesList =
+      document.getElementById("notesList");
+
+    notesList.innerHTML = "";
+
+    const q =
+      query(collection(db, "notes"), orderBy("timestamp", "desc"));
+
+    const querySnapshot =
+      await getDocs(q);
+
+    querySnapshot.forEach((docSnap) => {
+
+      const data = docSnap.data();
+
+      const div =
+        document.createElement("div");
+
+      div.className = "noteItem";
+
+      div.innerHTML = `
+        <div class="noteDate">${docSnap.id}</div>
+        <div class="noteText">${data.text}</div>
+      `;
+
+      notesList.appendChild(div);
+
+    });
+
+  } catch (error) {
+
+    console.error("Error loading notes:", error);
+
+  }
 
 }
 
 
 // CONNECT BUTTONS
-document
-  .getElementById("relapseBtn")
-  .addEventListener("click", relapse);
+function setupButtons() {
 
-document
-  .getElementById("saveNoteBtn")
-  .addEventListener("click", saveNote);
+  document
+    .getElementById("relapseBtn")
+    .addEventListener("click", relapse);
+
+  document
+    .getElementById("saveNoteBtn")
+    .addEventListener("click", saveNote);
+
+}
 
 
+// INIT
+async function init() {
 
-// START
-await loadData();
+  await loadData();
 
-startTimer();
+  await loadNotes();
 
-console.log("APP STARTED");
+  setupButtons();
+
+  startTimer();
+
+  console.log("App ready");
+
+}
+
+
+// START APP
+init();
