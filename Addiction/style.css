@@ -1,0 +1,140 @@
+/* style.css */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: #38bdf8;
+}
+
+/* Containers */
+.counter,
+.streaks,
+.calendar {
+    background: #1e293b;
+    padding: 25px;
+    margin: 15px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* Section titles */
+h2 {
+    margin-bottom: 15px;
+    color: #7dd3fc;
+}
+
+/* Timer display */
+#timer {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #22c55e;
+}
+
+/* Buttons */
+button {
+    background: #38bdf8;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #0f172a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0ea5e9;
+    transform: scale(1.05);
+}
+
+/* Relapse button special color */
+.counter button {
+    background: #ef4444;
+    color: white;
+}
+
+.counter button:hover {
+    background: #dc2626;
+}
+
+/* Inputs */
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #334155;
+    color: white;
+}
+
+/* Textarea */
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* Streak numbers */
+span {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    
+    .counter,
+    .streaks,
+    .calendar {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #timer {
+        font-size: 1.5rem;
+    }
+}
+
+/* Smooth animations */
+.counter,
+.streaks,
+.calendar {
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
