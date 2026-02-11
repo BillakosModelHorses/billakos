@@ -11,7 +11,7 @@
 <div class="counter">
   <h2>Time Clean</h2>
   <div id="timer">Loading...</div>
-  <button onclick="resetTimer()">I Relapsed</button>
+  <button id="relapseBtn">I Relapsed</button>
 </div>
 
 <div class="streaks">
@@ -24,14 +24,12 @@
   <h2>Calendar Notes</h2>
 
   <input type="date" id="dateInput">
+  <textarea id="noteInput"></textarea>
 
-  <textarea id="noteInput" placeholder="Write how you feel..."></textarea>
-
-  <button onclick="saveNote()">Save Note</button>
+  <button id="saveNoteBtn">Save Note</button>
 
 </div>
 
-<script type="module" src="firebase.js"></script>
 <script type="module" src="app.js"></script>
 
 </body>
