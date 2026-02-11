@@ -1,39 +1,53 @@
-import { db } from "./firebase.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 import {
+  getFirestore,
   doc,
   setDoc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+
+// YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+};
+
+
+// INIT FIREBASE
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
 let lastRelapseTime = Date.now();
 
 
-// LOAD DATA FROM FIREBASE
+// LOAD DATA
 async function loadData() {
 
-  const docRef = doc(db, "tracker", "main");
-  const docSnap = await getDoc(docRef);
+  const ref = doc(db, "tracker", "main");
 
-  if (docSnap.exists()) {
+  const snap = await getDoc(ref);
 
-    const data = docSnap.data();
+  if (snap.exists()) {
+
+    const data = snap.data();
 
     lastRelapseTime = data.lastRelapse || Date.now();
 
-    document.getElementById("longestStreak").innerText =
+    document.getElementById("longestStreak").textContent =
       data.longestStreak || 0;
 
   } else {
 
-    await setDoc(docRef, {
+    await setDoc(ref, {
 
       lastRelapse: Date.now(),
       longestStreak: 0
 
     });
-
-    lastRelapseTime = Date.now();
 
   }
 
@@ -49,24 +63,15 @@ function startTimer() {
 
     const diff = now - lastRelapseTime;
 
-    const days =
-      Math.floor(diff / (1000 * 60 * 60 * 24));
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor(diff / 3600000) % 24;
+    const minutes = Math.floor(diff / 60000) % 60;
+    const seconds = Math.floor(diff / 1000) % 60;
 
-    const hours =
-      Math.floor(diff / (1000 * 60 * 60)) % 24;
-
-    const minutes =
-      Math.floor(diff / (1000 * 60)) % 60;
-
-    const seconds =
-      Math.floor(diff / 1000) % 60;
-
-
-    document.getElementById("timer").innerText =
+    document.getElementById("timer").textContent =
       `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-
-    document.getElementById("currentStreak").innerText =
+    document.getElementById("currentStreak").textContent =
       days;
 
   }, 1000);
@@ -75,55 +80,53 @@ function startTimer() {
 
 
 // RELAPSE BUTTON
-window.resetTimer = async function () {
+async function relapse() {
 
-  const docRef = doc(db, "tracker", "main");
+  const ref = doc(db, "tracker", "main");
 
-  const docSnap = await getDoc(docRef);
+  const snap = await getDoc(ref);
 
   const now = Date.now();
 
-  let longestStreak = 0;
-  let lastRelapse = now;
+  let longest = 0;
+  let last = now;
 
-  if (docSnap.exists()) {
+  if (snap.exists()) {
 
-    const data = docSnap.data();
+    const data = snap.data();
 
-    lastRelapse = data.lastRelapse || now;
+    last = data.lastRelapse || now;
 
-    longestStreak = data.longestStreak || 0;
+    longest = data.longestStreak || 0;
 
-    const streakDays =
-      Math.floor((now - lastRelapse) / (1000 * 60 * 60 * 24));
+    const days =
+      Math.floor((now - last) / 86400000);
 
-    if (streakDays > longestStreak) {
-
-      longestStreak = streakDays;
-
-    }
+    if (days > longest)
+      longest = days;
 
   }
 
-  await setDoc(docRef, {
+  await setDoc(ref, {
 
     lastRelapse: now,
-    longestStreak: longestStreak
+    longestStreak: longest
 
   });
 
   lastRelapseTime = now;
 
-  document.getElementById("longestStreak").innerText =
-    longestStreak;
+  document.getElementById("longestStreak").textContent =
+    longest;
 
-  document.getElementById("currentStreak").innerText = 0;
+  document.getElementById("currentStreak").textContent =
+    0;
 
-};
+}
 
 
 // SAVE NOTE
-window.saveNote = async function () {
+async function saveNote() {
 
   const date =
     document.getElementById("dateInput").value;
@@ -133,30 +136,35 @@ window.saveNote = async function () {
 
   if (!date) {
 
-    alert("Select a date");
+    alert("Select date first");
     return;
 
   }
 
   await setDoc(doc(db, "notes", date), {
 
-    note: note,
-    timestamp: Date.now()
+    text: note,
+    time: Date.now()
 
   });
 
   alert("Note saved");
 
-};
-
-
-// INIT
-async function init() {
-
-  await loadData();
-
-  startTimer();
-
 }
 
-init();
+
+// BUTTON EVENTS
+document
+  .getElementById("relapseBtn")
+  .addEventListener("click", relapse);
+
+document
+  .getElementById("saveNoteBtn")
+  .addEventListener("click", saveNote);
+
+
+
+// START
+await loadData();
+
+startTimer();
