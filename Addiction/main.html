@@ -18,14 +18,16 @@
 
   <div class="box">
     <h2>Streak</h2>
-    Current: <span id="currentStreak">0<p>days</p></span><br>
-    Longest: <span id="longestStreak">0<p>days</p></span>
+    Current: <span id="currentStreak">0 days</span><br>
+    Longest: <span id="longestStreak">0 days</span>
   </div>
 
   <div class="box">
     <h2>Write Note</h2>
+    <label for="dateInput">Select Date:</label>
     <input type="date" id="dateInput">
-    <textarea id="noteInput"></textarea>
+    <label for="noteInput">Write your note:</label>
+    <textarea id="noteInput" placeholder="write note..."></textarea>
     <button id="saveNoteBtn">Save Note</button>
   </div>
 
