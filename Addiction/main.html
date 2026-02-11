@@ -8,26 +8,25 @@
 
 <h1>Recovery Tracker</h1>
 
-<div class="counter">
-  <h2>Time Clean</h2>
+<div>
+  <h2>Timer</h2>
   <div id="timer">Loading...</div>
   <button id="relapseBtn">I Relapsed</button>
 </div>
 
-<div class="streaks">
-  <h2>Streak Stats</h2>
-  <p>Current Streak: <span id="currentStreak">0</span> days</p>
-  <p>Longest Streak: <span id="longestStreak">0</span> days</p>
+<div>
+  <h2>Streak</h2>
+  Current: <span id="currentStreak">0</span><br>
+  Longest: <span id="longestStreak">0</span>
 </div>
 
-<div class="calendar">
-  <h2>Calendar Notes</h2>
-
+<div>
+  <h2>Notes</h2>
   <input type="date" id="dateInput">
+  <br>
   <textarea id="noteInput"></textarea>
-
+  <br>
   <button id="saveNoteBtn">Save Note</button>
-
 </div>
 
 <script type="module" src="app.js"></script>
