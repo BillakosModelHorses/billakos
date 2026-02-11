@@ -10,9 +10,13 @@ import {
 
 // YOUR FIREBASE CONFIG HERE
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
+  apiKey: "AIzaSyAJUJbeZ9ceRwaQOCboy79LEwbN-I7R9ro",
+          authDomain: "billakosmodelhorses.firebaseapp.com",
+          projectId: "billakosmodelhorses",
+          storageBucket: "billakosmodelhorses.appspot.com",
+          messagingSenderId: "988607299628",
+          appId: "1:988607299628:web:b7c2139b095a0afba8d189",
+          measurementId: "G-RWHNVMHN2P"
 };
 
 
